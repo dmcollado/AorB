@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  poll_item_a: MyString
+  poll_item_b: MyString
+  description: MyString
+  slug: MyString
+  user: one
+
+two:
+  poll_item_a: MyString
+  poll_item_b: MyString
+  description: MyString
+  slug: MyString
+  user: two

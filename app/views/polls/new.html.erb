@@ -1,0 +1,16 @@
+<h1>Create a New Poll</h1>
+
+<%= form_for @poll, url: {action: "create"} do |f| %>
+  
+  <%= f.label "Poll Item A" %>
+  <%= f.text_field :poll_item_a %>
+
+  <%= f.label "Poll Item B" %>
+  <%= f.text_field :poll_item_b %>
+
+  <%= f.label "Description" %>
+  <%= f.text_field :description %>
+
+  <%= f.submit "Create Poll" %>
+
+<% end %>

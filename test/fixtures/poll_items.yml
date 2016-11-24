@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  score: 1
+  item_a: false
+  url: MyString
+  poll: one
+  poll_item_type: one
+
+two:
+  score: 1
+  item_a: false
+  url: MyString
+  poll: two
+  poll_item_type: two
