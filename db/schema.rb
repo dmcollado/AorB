@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123192951) do
+ActiveRecord::Schema.define(version: 20161124215403) do
 
   create_table "poll_item_types", force: :cascade do |t|
     t.string   "code"
@@ -27,15 +27,17 @@ ActiveRecord::Schema.define(version: 20161123192951) do
     t.string   "url"
     t.integer  "poll_id"
     t.integer  "poll_item_type_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.index ["poll_id"], name: "index_poll_items_on_poll_id"
     t.index ["poll_item_type_id"], name: "index_poll_items_on_poll_item_type_id"
   end
 
   create_table "polls", force: :cascade do |t|
-    t.string   "poll_item_a"
-    t.string   "poll_item_b"
     t.string   "description"
     t.string   "slug"
     t.integer  "user_id"

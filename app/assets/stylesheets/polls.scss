@@ -1,3 +1,36 @@
 // Place all the styles related to the polls controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#header {
+	text-align: center;
+}
+
+.poll_item_a {
+	float: left;
+	width: 50%;
+	text-align: center;
+}
+
+.poll_item_a img {
+    width: 300px;
+	height: 300px;
+}
+
+.poll_item_b {
+	float: right;
+	width: 50%;
+	text-align: center;
+}
+
+.poll_item_b img {
+	width: 300px;
+	height: 300px;
+}
+
+.poll_description {
+    margin-top: 50px;
+	display: block;
+	width: 100%;
+	text-align: center;
+}

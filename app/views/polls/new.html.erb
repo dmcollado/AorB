@@ -1,16 +1,45 @@
-<h1>Create a New Poll</h1>
+<div id="header"><h1>Create a New Poll</h1></div>
 
-<%= form_for @poll, url: {action: "create"} do |f| %>
+<div class="poll_item_a">
+  <div id="item_a_image"><img src="" alt=""></div>
+  <!-- Start poll form -->
+  <%= form_for @poll do |item| %>
+
+    <!-- Create URL field for image preview of Item A -->
+    <%#= poll.fields_for @item_a do |item| %>
+      <%= label_tag "Enter URL for Poll Item A" %>
+      <%= text_field_tag :url_a,'', id: "item_a_url" %>
+    <%# end %>
+    or
+    <!-- Paperclip form for Item A -->
+    <%#= fields_for @item_a, url: new_poll_path, remote: true, html: { multipart: true } do |item| %>
+      <%#= item.file_field :avatar %>
+    <%# end %>
+</div>
+
+<div class="poll_item_b">
+  <div id="item_b_image"><img src="" alt=""></div>
   
-  <%= f.label "Poll Item A" %>
-  <%= f.text_field :poll_item_a %>
+    <!-- Create URL field for image preview of Item B -->
+    <%#= poll.fields_for @item_b do |item| %>
+      <%= label_tag "Enter URL for Poll Item B" %>
+	  <%= text_field_tag :url_b, '', id: "item_b_url" %>
+	<%# end %>
+    or
+    <!-- Paperclip form for Item B -->
+    <%#= poll.fields_for @item_b, url: new_poll_path, remote: true, html: { multipart: true } do |item| %>
+      <%#= item.file_field :avatar %>
+    <%# end %>
+</div>
 
-  <%= f.label "Poll Item B" %>
-  <%= f.text_field :poll_item_b %>
+<div class="poll_description">
 
-  <%= f.label "Description" %>
-  <%= f.text_field :description %>
+	  <!-- This field should fill in the description for this Poll ID -->
+	  <%= label_tag "Description" %>
+	  <%= text_field_tag :description %>
+	  <br>
+	  <!-- This button should create this Poll ID -->
+	<%= submit_tag "Create Poll" %>
 
-  <%= f.submit "Create Poll" %>
-
-<% end %>
+  <% end %>
+</div>

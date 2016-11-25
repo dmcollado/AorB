@@ -1,1 +1,19 @@
-Show Poll Here
+<div id="header">
+   <p id="notice"><%= notice %></p>
+   <h1>This is Your Poll</h1>
+</div>
+
+<div class="poll_item_a">
+  <div id="item_a_image"><%= image_tag @poll.poll_items.first.url %></div>
+</div>
+
+<div class="poll_item_b">
+  <div id="item_b_image"><%= image_tag @poll.poll_items.last.url %></div>
+</div>
+
+<div class="poll_description">
+  <%= @poll.description %>
+</div>
+
+<%= link_to 'Edit', edit_poll_path(@poll) %> |
+<%= link_to 'Back', polls_path %>
