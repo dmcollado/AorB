@@ -1,5 +1,5 @@
 class PollsController < ApplicationController
-  before_filter :set_poll, except: [:new, :create]
+  before_action :set_poll, except: [:new, :create]
   
   def new
   	@poll = Poll.new
@@ -16,10 +16,25 @@ class PollsController < ApplicationController
       @user = User.new(name: "David", email: "me@me.com")
       @user.save!
     end
+
   	@poll = Poll.new(description: params[:description], user_id: @user.id)
     @poll.save
-    @item_a = @poll.poll_items.new(url: params[:url_a])
-  	@item_b = @poll.poll_items.new(url: params[:url_b])
+
+    # Check if params has 'url' or 'avatar' params to create poll_items, then act accordingly...
+    if params[:url_a].present?
+      @item_a = @poll.poll_items.new(url: params[:url_a])
+    elsif params[:poll][:avatar_a].present?
+      @item_a = @poll.poll_items.new(avatar_a: params[:poll][:avatar_a])
+    else
+      "You fucked up!"
+    end
+    if params[:url_b].present?
+      @item_b = @poll.poll_items.new(url: params[:url_b])
+    elsif params[:poll][:avatar_b].present?
+      @item_b = @poll.poll_items.new(avatar_b: params[:poll][:avatar_b])
+    else
+      "You fucked up!"
+    end
   	
   	respond_to do |format|
       if @poll.save! && @item_a.save! && @item_b.save!
@@ -44,12 +59,12 @@ class PollsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require().permit(:url_a, :url_b, :description)
+      params.require().permit(:url_a, :url_b, :description, :avatar)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def poll_params
-      params.require().permit(:url_a, :url_b, :description)
+      params.require().permit(:url_a, :url_b, :description, :avatar)
     end
 
 end

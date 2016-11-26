@@ -3,13 +3,36 @@
    <h1>This is Your Poll</h1>
 </div>
 
-<div class="poll_item_a">
-  <div id="item_a_image"><%= image_tag @poll.poll_items.first.url %></div>
-</div>
+@poll.poll_items.first.url <%= @poll.poll_items.first.url %><br>
+@poll.poll_items.last.url <%= @poll.poll_items.last.url %><br>
+@poll.poll_items.first.avatar_a.url <%= @poll.poll_items.first.avatar_a.url %><br>
+@poll.poll_items.last.avatar_b.url <%= @poll.poll_items.last.avatar_b.url %><br>
 
-<div class="poll_item_b">
-  <div id="item_b_image"><%= image_tag @poll.poll_items.last.url %></div>
-</div>
+<% if @poll.poll_items.first.avatar_a.url %>
+  <div class="poll_item_a">
+	<div id="item_a_image"><%#= image_tag @poll.poll_items.first.avatar_a.url %></div>
+  </div>
+<% end %>
+
+
+	<div class="poll_item_a">
+	  <div id="item_a_image"><%#= image_tag @poll.poll_items.first.avatar_a.url %></div>
+	</div>
+
+
+	<div class="poll_item_b">
+	  <div id="item_b_image"><%#= image_tag @poll.poll_items.last.avatar_b.url %></div>
+	</div>
+
+
+    <div class="poll_item_a">
+	  <div id="item_a_image"><%#= image_tag @poll.poll_items.first.url %></div>
+	</div>
+
+	<div class="poll_item_b">
+	  <div id="item_b_image"><%#= image_tag @poll.poll_items.last.url %></div>
+	</div> -->
+
 
 <div class="poll_description">
   <%= @poll.description %>
@@ -17,3 +40,4 @@
 
 <%= link_to 'Edit', edit_poll_path(@poll) %> |
 <%= link_to 'Back', polls_path %>
+
