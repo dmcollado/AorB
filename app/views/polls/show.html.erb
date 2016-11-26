@@ -3,11 +3,6 @@
    <h1>This is Your Poll</h1>
 </div>
 
-@poll.poll_items.first.url <%= @poll.poll_items.first.url %><br>
-@poll.poll_items.last.url <%= @poll.poll_items.last.url %><br>
-@poll.poll_items.first.avatar_a.url <%= @poll.poll_items.first.avatar_a.url %><br>
-@poll.poll_items.last.avatar_b.url <%= @poll.poll_items.last.avatar_b.url %><br>
-
 <div class="poll_item_a">
   <% if @poll.poll_items.first.url.present? %>
 	<div id="item_a_image"><%= image_tag @poll.poll_items.first.url %></div>
