@@ -48,28 +48,3 @@
 
   <% end %>
 </div>
-
-<script>
-  var openFileA = function(event) {
-    var input = event.target;
-
-    var reader = new FileReader();
-    reader.onload = function(){
-      var dataURL = reader.result;
-      var output = document.querySelector('#item_a_image > img');
-      output.src = dataURL;
-    };
-    reader.readAsDataURL(input.files[0]);
-  };
-  var openFileB = function(event) {
-    var input = event.target;
-
-    var reader = new FileReader();
-    reader.onload = function(){
-      var dataURL = reader.result;
-      var output = document.querySelector('#item_b_image > img');
-      output.src = dataURL;
-    };
-    reader.readAsDataURL(input.files[0]);
-  };
-</script>

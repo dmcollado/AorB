@@ -28,12 +28,36 @@ $(function() {
   $(document).on("keyup, change", "input#item_b_url", function() {
     $("#item_b_image > img").attr("src", $(this).val());
   })
-  
-  // $(document).on("keyup, change", "input#poll_item_avatar", function() {
-  // 	console.log("Grabbing Paperclip URL", $(this).val());
-  //   $("#item_a_image > img").attr("src", $(this).val());
-  // })
-  
+})
+
+$(document).on('turbolinks:load', function() {
+  console.log("loaded.");
 
 })
+
+var openFileA = function(event) {
+    var input = event.target;
+
+    var reader = new FileReader();
+    reader.onload = function(){
+      var dataURL = reader.result;
+      var output = document.querySelector('#item_a_image > img');
+      output.src = dataURL;
+    };
+    reader.readAsDataURL(input.files[0]);
+  };
+
+var openFileB = function(event) {
+    var input = event.target;
+
+    var reader = new FileReader();
+    reader.onload = function(){
+      var dataURL = reader.result;
+      var output = document.querySelector('#item_b_image > img');
+      output.src = dataURL;
+    };
+    reader.readAsDataURL(input.files[0]);
+  };
+
+
 
