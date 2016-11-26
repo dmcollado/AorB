@@ -1,5 +1,5 @@
 class PollsController < ApplicationController
-  before_filter :set_poll, except: [:new, :create]
+  before_action :set_poll, except: [:new, :create]
   
   def new
   	@poll = Poll.new
@@ -44,12 +44,12 @@ class PollsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require().permit(:url_a, :url_b, :description)
+      params.require().permit(:url_a, :url_b, :description, :avatar)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def poll_params
-      params.require().permit(:url_a, :url_b, :description)
+      params.require().permit(:url_a, :url_b, :description, :avatar)
     end
 
 end
