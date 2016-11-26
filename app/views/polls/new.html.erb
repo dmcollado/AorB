@@ -1,7 +1,7 @@
 <div id="header"><h1>Create a New Poll</h1></div>
 
 <div class="poll_item_a">
-  <div id="item_a_image"><img src="" alt=""></div>
+  <div id="item_a_image"><img></div>
   <!-- Start poll form -->
   <%= form_for @poll do |item| %>
 
@@ -13,11 +13,12 @@
     
     <div class="paperclip_form"> or
       <!-- Paperclip form for Item A -->
-      <%= fields_for @item_a, url: new_poll_path, remote: true, html: { multipart: true } do |item| %>
-        <%= item.file_field :avatar %>
-      <% end %>
+      <%#= fields_for @item_a, html: { multipart: true } do |item| %>
+        <%= item.file_field :avatar_a, :"onchange" => 'openFileA(event)' %>
+      <%# end %>
     </div>
 </div>
+
 
 <div class="poll_item_b">
   <div id="item_b_image"><img src="" alt=""></div>
@@ -30,9 +31,9 @@
    
     <div class="paperclip_form"> or 
       <!-- Paperclip form for Item B -->
-      <%= fields_for @item_b, url: new_poll_path, remote: true, html: { multipart: true } do |item| %>
-        <%= item.file_field :avatar %>
-      <% end %>
+      <%#=fields_for @item_b, html: { multipart: true } do |item| %>
+        <%= item.file_field :avatar_b, :"onchange" => 'openFileB(event)' %>
+      <%# end %>
     </div>
 </div>
 
@@ -47,3 +48,28 @@
 
   <% end %>
 </div>
+
+<script>
+  var openFileA = function(event) {
+    var input = event.target;
+
+    var reader = new FileReader();
+    reader.onload = function(){
+      var dataURL = reader.result;
+      var output = document.querySelector('#item_a_image > img');
+      output.src = dataURL;
+    };
+    reader.readAsDataURL(input.files[0]);
+  };
+  var openFileB = function(event) {
+    var input = event.target;
+
+    var reader = new FileReader();
+    reader.onload = function(){
+      var dataURL = reader.result;
+      var output = document.querySelector('#item_b_image > img');
+      output.src = dataURL;
+    };
+    reader.readAsDataURL(input.files[0]);
+  };
+</script>

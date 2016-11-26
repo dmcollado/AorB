@@ -57,8 +57,8 @@ Rails.application.configure do
       secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
     },
     s3_region: ENV['AWS_REGION'], 
-    # s3_permissions: 'public-read',
-    url: ':s3_path_url',
+    s3_protocol: 'https',
+    url: ':s3_domain_url',
     path: ':class/:attachment/:id_partition/:style/:filename'
   }
   
