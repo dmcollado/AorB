@@ -10,6 +10,8 @@ class PollsController < ApplicationController
   def show
     @vote = Vote.new
     @votes = Vote.all
+    @votes_a = Vote.where(poll_id: @poll.id, vote: true)
+    @votes_b = Vote.where(poll_id: @poll.id, vote: false)
   end
 
   def create
