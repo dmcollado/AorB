@@ -8,7 +8,7 @@ class PollsController < ApplicationController
   end
 
   def show
-
+    @vote = Vote.new
   end
 
   def create
@@ -64,7 +64,7 @@ class PollsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def poll_params
-      params.require().permit(:url_a, :url_b, :description, :avatar)
+      params.require().permit(:url_a, :url_b, :description, :avatar, :poll_id)
     end
 
 end

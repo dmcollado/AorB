@@ -59,5 +59,3 @@ var openFileB = function(event) {
     reader.readAsDataURL(input.files[0]);
   };
 
-
-
