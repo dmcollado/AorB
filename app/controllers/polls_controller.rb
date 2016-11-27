@@ -9,6 +9,7 @@ class PollsController < ApplicationController
 
   def show
     @vote = Vote.new
+    @votes = Vote.all
   end
 
   def create
@@ -38,6 +39,7 @@ class PollsController < ApplicationController
   	
   	respond_to do |format|
       if @poll.save! && @item_a.save! && @item_b.save!
+        # format.html { redirect_to poll_path }
         format.html { redirect_to @poll, notice: 'Your poll was successfully created.' }
         format.json { render :show, status: :created, location: @poll }
       else

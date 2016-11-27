@@ -35,6 +35,13 @@
   <%= @poll.description %>
 </div>
 
+<div id="votes_a">
+  <%= @votes.length %>
+</div>
+<div id="votes_b">
+  <%= @votes.length %>
+</div>
+
 <%= link_to 'Edit', edit_poll_path(@poll) %> |
 <%= link_to 'Back', polls_path %>
 
