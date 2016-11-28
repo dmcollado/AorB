@@ -56,8 +56,17 @@
 </div>
 <% end %>
 
-<div class="poll_description">
-  <%= @poll.description %>
+<div id="share">
+  <div id="description">
+    <%= label_tag "Describe your poll" %>
+	<%= text_field_tag :description %>
+  </div>
+  <p> Share your poll with friends on: </p>
+  <div id="social-links">
+    <a href="#" target="new"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+	<a href="#" target="new"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>
+	<a href="#" target="new"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+  </div>
 </div>
 
 <div id="votes_a">

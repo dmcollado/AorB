@@ -1,0 +1,1 @@
+<p>Sorry, that poll expired <%= ((Time.now - @poll.created_at) - (15*60))/60 %> minutes ago </p>

@@ -6,45 +6,29 @@
   <%= form_for @poll do |item| %>
 
     <!-- Create URL field for image preview of Item A -->
-    <%#= poll.fields_for @item_a do |item| %>
       <%= label_tag "Enter URL for Poll Item A" %>
       <%= text_field_tag :url_a, '', id: "item_a_url" %>
-    <%# end %>
     
     <div class="paperclip_form"> or
       <!-- Paperclip form for Item A -->
-      <%#= fields_for @item_a, html: { multipart: true } do |item| %>
         <%= item.file_field :avatar_a, :"onchange" => 'openFileA(event)' %>
-      <%# end %>
     </div>
 </div>
-
 
 <div class="poll_item_b">
   <div id="item_b_image"><img src="" alt=""></div>
   
     <!-- Create URL field for image preview of Item B -->
-    <%#= poll.fields_for @item_b do |item| %>
-      <%= label_tag "Enter URL for Poll Item B" %>
+    <%= label_tag "Enter URL for Poll Item B" %>
 	  <%= text_field_tag :url_b, '', id: "item_b_url" %>
-	<%# end %>
    
     <div class="paperclip_form"> or 
       <!-- Paperclip form for Item B -->
-      <%#=fields_for @item_b, html: { multipart: true } do |item| %>
-        <%= item.file_field :avatar_b, :"onchange" => 'openFileB(event)' %>
-      <%# end %>
+      <%= item.file_field :avatar_b, :"onchange" => 'openFileB(event)' %>
     </div>
 </div>
 
-<div class="poll_description">
-
-	  <!-- This field should fill in the description for this Poll ID -->
-	  <%= label_tag "Description" %>
-	  <%= text_field_tag :description %>
-	  <br>
-	  <!-- This button should create this Poll ID -->
+<div id="create-poll-btn">
 	<%= submit_tag "Create Poll" %>
-
   <% end %>
 </div>

@@ -1,0 +1,11 @@
+<div id="header">
+   <p id="notice"><%= notice %></p>
+   <h1>These are the Votes for this Poll</h1>
+</div>
+
+<ul>
+<% @votes.each do |vote| %>
+    <li><%= vote.poll_id %></li>
+    <li><%= vote.vote %></li>
+<% end %>
+</ul>

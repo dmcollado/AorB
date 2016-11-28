@@ -17,7 +17,7 @@ class PollsController < ApplicationController
   def create
     @user = User.find_by(name: "anon")
     @expiration = 1
-  	@poll = Poll.new(description: params[:description], user_id: @user.id, expiration: @expiration)
+  	@poll = Poll.new(user_id: @user.id, expiration: @expiration)
     @poll.save
 
     # Check if params contains 'url' or 'avatar' params to create poll_items, then create poll_items accordingly...
