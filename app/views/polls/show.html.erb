@@ -41,6 +41,9 @@
 <div id="votes_b">
   <%= @votes_b.length %>
 </div>
+<div id="expiration" width="100%">
+  <%= (Time.now - @poll.created_at) %>
+</div>
 
 <%= link_to 'Edit', edit_poll_path(@poll) %> |
 <%= link_to 'Back', polls_path %>
