@@ -15,11 +15,7 @@ class PollsController < ApplicationController
   end
 
   def create
-    if @user == nil
-      @user = User.new(name: "David", email: "me@me.com")
-      @user.save!
-    end
-
+    @user = User.find_by(name: "anon")
   	@poll = Poll.new(description: params[:description], user_id: @user.id)
     @poll.save
 
@@ -55,6 +51,12 @@ class PollsController < ApplicationController
   end
 
   private
+ 
+    def set_user
+      if @user == nil
+        @user = User.find_by(name: "anon")
+      end
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_poll
