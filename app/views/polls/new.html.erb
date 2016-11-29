@@ -1,34 +1,48 @@
-<div id="header"><h1>Create a New Poll</h1></div>
+<%= form_for @poll, :html => {:class => 'new-poll'} do |item| %>
 
-<div class="poll_item_a">
-  <div id="item_a_image"><img></div>
-  <!-- Start poll form -->
-  <%= form_for @poll do |item| %>
-
-    <!-- Create URL field for image preview of Item A -->
-      <%= label_tag "Enter URL for Poll Item A" %>
-      <%= text_field_tag :url_a, '', id: "item_a_url" %>
-    
-    <div class="paperclip_form"> or
-      <!-- Paperclip form for Item A -->
-        <%= item.file_field :avatar_a, :"onchange" => 'openFileA(event)' %>
-    </div>
+<div id="poll-item-a" class="poll-item">
+  <div class="poll-inner">
+    <%= item.file_field :avatar_a, :"onchange" => 'openFile(event, "a")', class: "choose-image", id: "poll-file-a", accept: "image/*" %>
+    <label for="poll-file-a" class="btn-blue">choose an image</label>
+    <%= item.file_field :avatar_a, :"onchange" => 'openFile(event, "a")', class: "take-photo", id: "poll-capture-a",  accept: "image/*", capture: "camera" %>
+    <label for="poll-capture-a"><i class="fa fa-4x fa-camera"></i></label>
+  </div>
+  <div id="item-a-image-container" class="item-image-container">
+    <img id="item-a-image" class="poll-item-image" src="" />
+  </div>
 </div>
 
-<div class="poll_item_b">
-  <div id="item_b_image"><img src="" alt=""></div>
-  
-    <!-- Create URL field for image preview of Item B -->
-    <%= label_tag "Enter URL for Poll Item B" %>
-	  <%= text_field_tag :url_b, '', id: "item_b_url" %>
-   
-    <div class="paperclip_form"> or 
-      <!-- Paperclip form for Item B -->
-      <%= item.file_field :avatar_b, :"onchange" => 'openFileB(event)' %>
-    </div>
+<div class="poll-middle">
+  <a id="reset-button-a" class="reset-button hide" href="#"><i class="fa fa-close fa-2x"></i></a>
+
+  <h3 id="middle-text-a" class="poll-middle-text hide">this</h3>
+
+  <%#= submit_tag "Vs", class: "submit-btn" %>
+  <button type="submit" class="submit-btn">Vs</button>
+
+  <h3 id="middle-text-b" class="poll-middle-text hide">that</h3>
+
+  <a id="reset-button-b" class="reset-button hide" href="#"><i class="fa fa-close fa-2x"></i></a>
 </div>
 
-<div id="create-poll-btn">
-	<%= submit_tag "Create Poll" %>
+
+
+<div id="poll-item-b" class="poll-item">
+  <div class="poll-inner">
+    <%= item.file_field :avatar_b, :"onchange" => 'openFile(event, "b")', class: "take-photo", id: "poll-capture-b",  accept: "image/*", capture: "camera" %>
+    <label for="poll-capture-b"><i class="fa fa-4x fa-camera"></i></label>
+    <%= item.file_field :avatar_b, :"onchange" => 'openFile(event, "b")', class: "choose-image btn-yellow", id: "poll-file-b", accept: "image/*" %>
+    <label for="poll-file-b" class="btn-yellow">choose an image</label>
+  </div>
+  <div id="item-b-image-container" class="item-image-container">
+    <img id="item-b-image" class="poll-item-image" src="" />
+  </div>
+
+</div>
+
+<div class="poll-description">
+    <% hidden_field(:description, "description default") %>
+</div>
+
   <% end %>
-</div>
+
