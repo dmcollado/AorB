@@ -27,12 +27,16 @@ ActiveRecord::Schema.define(version: 20161128015407) do
     t.string   "url"
     t.integer  "poll_id"
     t.integer  "poll_item_type_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "avatar_a_file_name"
+    t.string   "avatar_a_content_type"
+    t.integer  "avatar_a_file_size"
+    t.datetime "avatar_a_updated_at"
+    t.string   "avatar_b_file_name"
+    t.string   "avatar_b_content_type"
+    t.integer  "avatar_b_file_size"
+    t.datetime "avatar_b_updated_at"
     t.index ["poll_id"], name: "index_poll_items_on_poll_id"
     t.index ["poll_item_type_id"], name: "index_poll_items_on_poll_item_type_id"
   end
