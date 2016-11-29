@@ -19,16 +19,23 @@
 // // }
 
 
-// $(document).on("turbolinks:load", main());
-
-$(function() {
+$(document).on("turbolinks:load", function() {
   $(document).on("keyup, change", "input#item_a_url", function() {
   	$("#item_a_image > img").attr("src", $(this).val());
   })
   $(document).on("keyup, change", "input#item_b_url", function() {
     $("#item_b_image > img").attr("src", $(this).val());
   })
+  $(document).on("input", "input#description", function urlGen() {
+      var url = "https://twitter.com/intent/tweet?text=" 
+      + encodeURIComponent($(this).val()) 
+      + "&url=" + encodeURIComponent(window.location.href)
+      + "&hashtags=" + "ThisOrThat";
+    $("#twiiter-btn").attr("href", url);
+    console.log(url);
+  })
 })
+
 
 $(document).on('turbolinks:load', function() {
   console.log("loaded.");

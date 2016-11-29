@@ -12,11 +12,12 @@ class PollsController < ApplicationController
     @votes = Vote.all
     @votes_a = Vote.where(poll_id: @poll.id, vote: true)
     @votes_b = Vote.where(poll_id: @poll.id, vote: false)
+    
   end
 
   def create
     @user = User.find_by(name: "anon")
-    @expiration = 1
+    @expiration = 100
   	@poll = Poll.new(user_id: @user.id, expiration: @expiration)
     @poll.save
 

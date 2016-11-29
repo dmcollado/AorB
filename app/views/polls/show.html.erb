@@ -56,6 +56,15 @@
 </div>
 <% end %>
 
+<!-- Vote counters -->
+<div id="votes_a">
+  <%= @votes_a.length %>
+</div>
+<div id="votes_b">
+  <%= @votes_b.length %>
+</div>
+
+<!-- Poll description and sharing options -->
 <div id="share">
   <div id="description">
     <%= label_tag "Describe your poll" %>
@@ -63,18 +72,16 @@
   </div>
   <p> Share your poll with friends on: </p>
   <div id="social-links">
-    <a href="#" target="new"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
-	<a href="#" target="new"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>
-	<a href="#" target="new"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+    <!-- Facebook sharing link code -->
+    <div class="fb-share-button" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?src=sdkpreparse">Share</a></div>
+	
+	<a class="twitter-share-button" id="twiiter-btn" href="https://twitter.com/intent/tweet">Tweet</a>
+
+	<a href="#" target="new"><i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i></a>
   </div>
 </div>
 
-<div id="votes_a">
-  <%= @votes_a.length %>
-</div>
-<div id="votes_b">
-  <%= @votes_b.length %>
-</div>
+<!-- Poll expiration status -->
 <div id="expiration" width="100%">
   <%= (Time.now - @poll.created_at) %>
 </div>
