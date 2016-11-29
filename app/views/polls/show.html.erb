@@ -4,23 +4,79 @@
 </div>
 
 <div class="poll_item_a">
+<% if ((Time.now - @poll.created_at)/60) < @poll.expiration %>
   <% if @poll.poll_items.first.url.present? %>
-	<div id="item_a_image"><%= image_tag @poll.poll_items.first.url %></div>
+    <!-- Link_to should trigger Votes#create action to validate and save this vote with a 'vote:true' param -->
+	<div id="item_a_image">
+	  <%= link_to image_tag(@poll.poll_items.first.url), poll_votes_path(vote: true, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true %>	
+	</div>
   <% else %>
-	<div id="item_a_image"><%= image_tag @poll.poll_items.first.avatar_a.url %></div>
+    <!-- Link_to should trigger Votes#create action to validate and save this vote with a 'vote:true' param -->
+	<div id="item_a_image">
+	  <%= link_to image_tag(@poll.poll_items.first.avatar_a.url), poll_votes_path(vote: true, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true %>
+	</div>
   <% end %>
 </div>
 
 <div class="poll_item_b">
   <% if @poll.poll_items.last.url.present? %>
-	<div id="item_b_image"><%= image_tag @poll.poll_items.first.url %></div>
+    <!-- Link_to should trigger Votes#create action to validate and save this vote with a 'vote:true' param -->
+	<div id="item_b_image">
+	  <%= link_to image_tag(@poll.poll_items.last.url), poll_votes_path(vote: false, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true %>
+	</div>
   <% else %>
-	<div id="item_b_image"><%= image_tag @poll.poll_items.last.avatar_b.url %></div>
+    <!-- Link_to should trigger Votes#create action to validate and save this vote with a 'vote:true' param -->
+	<div id="item_b_image">
+	  <%= link_to (image_tag @poll.poll_items.last.avatar_b.url), poll_votes_path(vote: false, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true %>
+	</div>
   <% end %>
 </div>
+<% else %>
+<div class="poll_item_a">
+  <% if @poll.poll_items.first.url.present? %>
+	<div id="item_a_image">
+	  <%= image_tag(@poll.poll_items.first.url) %>	
+	</div>
+  <% else %>
+	<div id="item_a_image">
+	  <%= image_tag(@poll.poll_items.first.avatar_a.url) %>
+	</div>
+  <% end %>
+</div>
+<div class="poll_item_b">
+  <% if @poll.poll_items.last.url.present? %>
+	<div id="item_b_image">
+	  <%= image_tag(@poll.poll_items.last.url) %>
+	</div>
+  <% else %>
+	<div id="item_b_image">
+	  <%= image_tag(@poll.poll_items.last.avatar_b.url) %>
+	</div>
+  <% end %>
+</div>
+<% end %>
 
-<div class="poll_description">
-  <%= @poll.description %>
+<div id="share">
+  <div id="description">
+    <%= label_tag "Describe your poll" %>
+	<%= text_field_tag :description %>
+  </div>
+  <p> Share your poll with friends on: </p>
+  <div id="social-links">
+    <a href="#" target="new"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+	<a href="#" target="new"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>
+	<a href="#" target="new"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+  </div>
+</div>
+
+<div id="votes_a">
+  <%= @votes_a.length %>
+</div>
+<div id="votes_b">
+  <%= @votes_b.length %>
+</div>
+<div id="expiration" width="100%">
+  <%= (Time.now - @poll.created_at) %>
 </div>
 
 <%= link_to 'Edit', edit_poll_path(@poll) %> |
