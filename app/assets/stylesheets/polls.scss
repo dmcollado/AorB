@@ -1,36 +1,363 @@
 // Place all the styles related to the polls controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+* {
+	box-sizing: border-box;
+}
 
-#header {
+html, body {
+	margin: 0;
+	padding: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	min-height: 100%;
+}
+
+body {
+	font-size: 14px;
+	font-family: 'Roboto', sans-serif;
+	background: #172942;
+}
+
+.container {
+	padding: 1em;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: column wrap;
+	flex-flow: column wrap;
+	-webkit-align-content: space-around;
+	align-content: space-around;
+	-webkit-justify-content: center;
+	justify-content: center;
+	height: 100%;
+}
+
+form.new-poll {
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: column wrap;
+	flex-flow: column wrap;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-align-content: space-around;
+	align-content: space-around;
+	-webkit-align-items: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.poll-middle {
+	position: relative;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-order: 2;
+	order: 2;
+	-webkit-flex-flow: column wrap;
+	flex-flow: column wrap;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	margin: -3.3em auto;	
+/*	height: 14em;*/
+	z-index: 9999;
+}
+
+.poll-middle-text {
+	position: absolute;
+	margin: 0 auto;
+	padding: 0;
+	font-size: 3em;
+	font-family: 'Pacifico', cursive;
+	font-weight: normal;
+	transition: all 0.5s ease;
+	z-index: 1;
+}
+
+#middle-text-a {
+  margin: -1.6em 0 0 0;
+	-webkit-order: 1;
+	order: 1;
+	align-self: center;
+	color: #f9c835;
+}
+
+.poll-middle-text.hide, .reset-button.hide{
+	font-size: 0.2em;
+	margin: 0;
+}
+
+#middle-text-b {
+  margin: 1.7em 0 0 0;
+	-webkit-order: 3;
+	order: 3;
+	align-self: center;
+	color: #1d7bf2;
+}
+
+.btn-blue {
+	border: 1px solid #003471;
+	background: #1e5aae;
+}
+
+.btn-yellow {
+	border: 1px solid #fff200;
+	background: #f5d109;	
+}
+
+.reset-button {
+	position: absolute;
+	padding: 0.1em 0 0 0.1em;;
+  width: 2.3em;
+  height: 2.3em;
+	color: white;
+	border-radius: 50%;
+	text-decoration: none;
 	text-align: center;
+	-webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.5);
+	box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.5);
+	transition: all 0.5s ease;
 }
 
-.poll_item_a {
-	float: left;
-	width: 50%;
-	text-align: center;
+#reset-button-a {
+	background: #1d7bf2;
+	margin: -5em 0 0 0;
 }
 
-.poll_item_a img {
-    width: 300px;
-	height: 300px;
+#reset-button-b {
+	margin: 5em 0 0 0;
+	background: #f9c835;
 }
 
-.poll_item_b {
-	float: right;
-	width: 50%;
-	text-align: center;
-}
-
-.poll_item_b img {
-	width: 300px;
-	height: 300px;
-}
-
-.poll_description {
-    margin-top: 50px;
+.submit-btn {
+	position: relative;
+	margin: 0.5em 0;
 	display: block;
+	-webkit-order: 2;
+	order: 2;
+	align-self: center;
+	width: 5rem;
+  height: 5rem;
+  border: 0;
+  border-radius: 50%;
+  font-family: 'Pacifico', cursive;
+  font-size: 3rem;
+  color: #444;
+  background: #fff;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.submit-btn:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;      
+  display: block;
+	content: '';
+	font-family: "FontAwesome";
+	font-size: 1px;
+	color: #fff;
+  border-radius: 50%;
+  height: 0%;
+  width: 0%;
+  margin: auto;
+  background: #5cb85c;
+  transform: translateX(-50%) translateY(-50%);
+  transition: 0.8s;
+}
+
+.submit-btn.ready {
+	-webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.5);
+	-moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.5);
+	box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.5);
+}
+
+.submit-btn.ready:after {
+	content: "";
+	height: 102%;
+	width: 102%;
+	font-size: 1em;
+  line-height: 1.6em;
+  text-align: center;
+}
+
+.submit-btn.ready:hover:after {
+	background: #449d44;
+}
+
+
+
+.poll-item {
+	position: relative;
+	margin: 0 auto;
+	width: 80%;
+	border-radius: 50%;
+	overflow: hidden;
+	text-align: center;
+	z-index: 1;
+}
+
+
+.poll-inner {
+	display: -webkit-flex;
+	display: flex;
+	margin: 0 auto;
+	height: 85%;
+	width: 80%;
+	-webkit-flex-flow: column wrap;
+	flex-flow: column wrap;
+	-webkit-align-content: center;
+	align-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+}
+
+#poll-item-a {
+	-webkit-order: 1;
+	order: 1;
+	background: #1d7bf2;
+}
+
+#poll-item-b {
+	-webkit-order: 3;
+	order: 3;
+	background: #f9c835;
+}
+
+#poll-item-a .choose-image + label {
+	-webkit-order: 3;
+	order: 3;
+}
+
+#poll-item-b .choose-image + label {
+	-webkit-order: 3;
+	order: 3;
+}
+
+#poll-item-a .take-photo + label {
+	margin-top: 2.5em;
+}
+
+#poll-item-b .take-photo + label {
+	margin-top: 4em;
+}
+
+.choose-image + label, .take-photo + label {
+	cursor: pointer;
+	color: #fff;
+}
+
+.choose-image + label {
+  display: block;
+  margin: 0 auto;
+  padding: 0.2em 0.4em;
+	text-align:center;
+	border-radius: 4px;
+}
+
+.take-photo + label {
+	-webkit-order: 2;
+	order: 2;
+	align-self: center;
+	display: block;
+}
+
+.choose-image, .take-photo {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+/* remember to add js for this for Firefox
+		because FF doesn't do this focus.
+ */
+.choose-image:focus + label, .take-photo:focus + label {
+	outline: 1px solid #003471;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+
+.poll-item input {
+	max-width: 100%;
+}
+
+.poll-item-image {
+	display: block;
+	margin: 0 auto;
+}
+
+/* JS Toggles for Image Sizes */
+.tall-image {
+	max-width: 100%;
+	height: auto;
+}
+
+.wide-image {
+	height: 100%;
+	width: auto;
+}
+
+.item-image-container {
+	position: relative;
+	height: 100%;
+}
+
+/*.item-image-container:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(29,123,242, 0.65);
+} */
+
+
+.poll-description {
+	display: none;
+  margin-top: 50px;
 	width: 100%;
 	text-align: center;
+}
+
+
+@media only screen and (min-width : 768px) {
+	.container, form.new-poll {
+		-webkit-flex-flow: row wrap;
+		flex-flow: row wrap;
+	}
+
+	.poll-item {
+		width: 40%;
+	}
+
+	.poll-middle {
+		-webkit-flex-flow: row wrap;
+		flex-flow: row wrap;
+		margin: 0 -10em;
+	}
+
+	#reset-button-a {
+		margin: 0 0 0 -5em;
+	}
+
+	#reset-button-b {
+		margin: 0 0 0 5em;
+	}
+
+	#middle-text-a {
+		margin: 0 0 0 -2.2em;
+	}
+
+	#middle-text-b {
+		margin: 0 0 0 2.2em;
+	}
 }

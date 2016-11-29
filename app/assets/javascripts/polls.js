@@ -1,60 +1,120 @@
-// # Place all the behaviors and hooks related to the matching controller here.
-// # All this logic will automatically be available in application.js.
-// # You can use CoffeeScript in this file: http://coffeescript.org/
-// main = function() {
-//   previewItemA();
-//   // previewItemB();
-// }
-
-// previewItemA = function() {
-//   var itemA = $("#item_a");
-//   itemA.click(function(e) {
-//     e.preventDefault();
-//     console.log("Item A clicked");
-//   });
-// }
-
-// // previewItemB = function() {
-// //   var itemb = $("#item_b");
-// // }
-
-
-// $(document).on("turbolinks:load", main());
-
+// Don't know who wrote this, or what it does. -R
 $(function() {
-  $(document).on("keyup, change", "input#item_a_url", function() {
-  	$("#item_a_image > img").attr("src", $(this).val());
+  $(document).on("keyup, change", "input#item-a-url", function() {
+  	$("#item-a-image").attr("src", $(this).val());
+
   })
-  $(document).on("keyup, change", "input#item_b_url", function() {
-    $("#item_b_image > img").attr("src", $(this).val());
+  $(document).on("keyup, change", "input#item-b-url", function() {
+    $("#item-b-image > img").attr("src", $(this).val());
   })
 })
+
 
 $(document).on('turbolinks:load', function() {
+  
   console.log("loaded.");
+
+  function setPollImageHeight(){
+    var pollImageWidth = $('.poll-item').width();
+    $('.poll-item').css('height', pollImageWidth);
+    // $('.poll-item-image').css('height', pollImageWidth);
+    }
+
+  setPollImageHeight();
+
+  $(window).bind("resize", function(){
+    setPollImageHeight();
+  });
+
+
+
+//hide and show elements when the reset buttons are clicked. Needs to be refactored.
+  $('#reset-button-a').click(function(event) {
+    //clear the file out
+    $('#poll-file-a').attr('type', '');
+    $('#poll-capture-a').attr('type', '');
+    $('#poll-file-a').attr('type', 'file');
+    $('#poll-capture-a').attr('type', 'file');
+    $('#item-a-image').attr('src', '');
+
+    // restore the take photo icon
+    $('#poll-item-a > .poll-inner').toggle();
+
+    //remove the ready button. Doesn't check if it's actually set.
+    $('.submit-btn').removeClass('ready');
+
+    //remove the size classes for the image
+    $('#item-a-image').removeClass('tall-image wide-image');
+
+    //hide the reset button
+    $(this).toggleClass('hide');
+
+    //restore this/that text
+    $('#middle-text-a').delay(500).toggleClass('hide');
+
+    //don't allow a regular link click
+    event.preventDefault();
+  });
+
+  $('#reset-button-b').click(function(event) {
+    $('#poll-file-b').attr('type', '');
+    $('#poll-capture-b').attr('type', '');
+    $('#poll-file-b').attr('type', 'file');
+    $('#poll-capture-b').attr('type', 'file');
+    $('#item-b-image').attr('src', '');
+    $('#poll-item-b > .poll-inner').toggle();
+
+    $('.submit-btn').removeClass('ready');
+
+    $('#item-b-image').removeClass('tall-image wide-image');
+    $(this).toggleClass('hide');
+    $('#middle-text-b').delay(500).toggleClass('hide');
+    event.preventDefault();
+  });
+
+
+
+  //Remove .hide on load for animation in the middle
+  $('.poll-middle-text').toggleClass('hide');
 
 })
 
-var openFileA = function(event) {
+//Show the image that has been selected by the user
+var openFile = function(event, pollLetter) {
+
     var input = event.target;
-
     var reader = new FileReader();
-    reader.onload = function(){
-      var dataURL = reader.result;
-      var output = document.querySelector('#item_a_image > img');
-      output.src = dataURL;
-    };
-    reader.readAsDataURL(input.files[0]);
-  };
 
-var openFileB = function(event) {
-    var input = event.target;
-
-    var reader = new FileReader();
     reader.onload = function(){
+      var itemImage = "#item-" + pollLetter + "-image";
       var dataURL = reader.result;
-      var output = document.querySelector('#item_b_image > img');
+      var output = document.querySelector(itemImage);
       output.src = dataURL;
+
+      //set the reset button letter
+      var resetButton = "#reset-button-" + pollLetter;
+
+      //hide the image upload elements
+      $('#poll-item-' + pollLetter + ' > .poll-inner').toggle();
+
+      //show the reset button
+      $(resetButton).toggleClass('hide');
+
+      //hide the this or that text
+      $('#middle-text-' + pollLetter).delay(500).toggleClass('hide');
+
+      //if the image is horizontal, change the css so it fills the circle
+      if ($(itemImage).height() < $(itemImage).width()){
+        $(itemImage).toggleClass('wide-image');
+      } else {
+        $(itemImage).toggleClass('tall-image')
+      };
+
+      //if both images are set, change the submit button
+      if ($('#item-a-image').attr('src') && $('#item-b-image').attr('src')) {
+        $('.submit-btn').addClass('ready');
+      }
+
     };
     reader.readAsDataURL(input.files[0]);
   };
