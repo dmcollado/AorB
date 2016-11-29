@@ -27,12 +27,13 @@ $(document).on("turbolinks:load", function() {
     $("#item_b_image > img").attr("src", $(this).val());
   })
   $(document).on("input", "input#description", function urlGen() {
-      var url = "https://twitter.com/intent/tweet?text=" 
+    var twitter_url = "https://twitter.com/intent/tweet?text=" 
       + encodeURIComponent($(this).val()) 
       + "&url=" + encodeURIComponent(window.location.href)
       + "&hashtags=" + "ThisOrThat";
-    $("#twiiter-btn").attr("href", url);
-    console.log(url);
+    $("#twitter-btn").attr("href", twitter_url);
+    $("meta[property='og\\:description']").attr("content", $(this).val());
+    $("#wa_btn").attr("data-text", $(this).val());
   })
 })
 
