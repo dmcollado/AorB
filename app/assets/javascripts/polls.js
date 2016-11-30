@@ -14,6 +14,7 @@ $(document).on('turbolinks:load', function() {
   
   console.log("loaded.");
 
+  $('.submit-btn').prop('disabled', true);
 
   function setPollImageHeight(){
     var pollImageWidth = $('.poll-item').width();
@@ -64,8 +65,9 @@ $(document).on('turbolinks:load', function() {
     resetFormElement('#poll-file-a');
     resetFormElement('#poll-capture-a');
 
-    //remove the ready button. Doesn't check if it's actually set.
+    //remove the ready from button. Doesn't check if it's actually set.
     $('.submit-btn').removeClass('ready');
+    $('.submit-btn').prop('disabled', true);
 
     //remove the size classes for the image
     $('#item-a-image').removeClass('tall-image wide-image');
@@ -86,6 +88,7 @@ $(document).on('turbolinks:load', function() {
     resetFormElement('#poll-file-b');
     resetFormElement('#poll-capture-b');
     $('.submit-btn').removeClass('ready');
+    $('.submit-btn').prop('disabled', true);
     $('#item-b-image').removeClass('tall-image wide-image');
     $(this).toggleClass('hide');
     $('#middle-text-b').delay(500).toggleClass('hide');
@@ -137,6 +140,7 @@ var openFile = function(event, pollLetter) {
 
     //if both images are set, change the submit button
     if ($('#item-a-image').attr('src') && $('#item-b-image').attr('src')) {
+      $('.submit-btn').removeAttr('disabled');
       $('.submit-btn').addClass('ready');
     }
 
