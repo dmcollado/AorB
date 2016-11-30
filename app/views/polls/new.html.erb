@@ -4,7 +4,7 @@
   the FB.login() function when clicked.
 -->
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+<fb:login-button scope="public_profile,email,user_friends" onlogin="checkLoginState();">
 </fb:login-button>
 
 <div id="status">
@@ -53,6 +53,9 @@
 <div class="poll-description">
     <% hidden_field(:description, "description default") %>
 </div>
+<% end %>
 
-  <% end %>
+<%= link_to "Real Login", facebook_token_path, id: 'login-link' %>
+
+<%= link_to "Token Transfer", facebook_token_path, id: 'token-transfer-link' %>
 

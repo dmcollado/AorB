@@ -85,3 +85,35 @@
       'Thanks for logging in, ' + response.name + '!';
     });
   }
+
+  $(document).on('turbolinks:load', function() {
+
+    // A "real" Facebook login link
+    $('#login-link').click(function(event) {
+    event.preventDefault();
+
+    // launch the Facebook login flow manually
+    FB.login(function(response) {
+      var ar = response.authResponse;
+      // If the user is connected to my app...
+      if (ar) {
+        console.log(ar);
+        // ... send the user's accessToken to my server so I can use it.
+        window.location = $(event.target).attr('href') + '?token=' + ar.accessToken
+      }
+    }, {scope: 'public_profile,email,user_friends'} // set your profile permissions here
+    );
+  });
+
+  // Facebook token transfer link. 
+  // Only works if the user is already connected to your app.
+  $('#token-transfer-link').click(function(event) {
+    event.preventDefault();
+    token = FB.getAccessToken();
+    if (token) {
+      window.location = $(event.target).attr('href') + '?token=' + token;
+    } else {
+      alert("Please login to Facebook first.");
+    }
+  });
+});

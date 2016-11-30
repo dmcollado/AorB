@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
   root 'polls#new'
 
+  get 'facebook/token'
+
   resources :users
 
   resources :polls do

@@ -1,5 +1,5 @@
 // Don't know who wrote this, or what it does. -R
-$(function() {
+$(document).on('turbolinks:load', function() {
   $(document).on("keyup, change", "input#item-a-url", function() {
   	$("#item-a-image").attr("src", $(this).val());
 
