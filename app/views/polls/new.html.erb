@@ -1,3 +1,15 @@
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+
+<div id="status">
+</div>
+
 <%= form_for @poll, :html => {:class => 'new-poll'} do |item| %>
 
 <div id="poll-item-a" class="poll-item">
@@ -24,8 +36,6 @@
 
   <a id="reset-button-b" class="reset-button hide" href="#"><i class="fa fa-close fa-2x"></i></a>
 </div>
-
-
 
 <div id="poll-item-b" class="poll-item">
   <div class="poll-inner">
