@@ -8,12 +8,16 @@
   <% if @poll.poll_items.first.url.present? %>
     <!-- Link_to should trigger Votes#create action to validate and save this vote with a 'vote:true' param -->
 	<div id="item_a_image">
-	  <%= link_to image_tag(@poll.poll_items.first.url), poll_votes_path(vote: true, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true %>	
+	  <% if @can_vote %>
+	    <%= link_to image_tag(@poll.poll_items.first.url), poll_votes_path(vote: true, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true %>	
+	  <% end %>
 	</div>
   <% else %>
     <!-- Link_to should trigger Votes#create action to validate and save this vote with a 'vote:true' param -->
 	<div id="item_a_image">
-	  <%= link_to image_tag(@poll.poll_items.first.avatar_a.url), poll_votes_path(vote: true, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true %>
+	  <% if @can_vote %>
+	    <%= link_to image_tag(@poll.poll_items.first.avatar_a.url), poll_votes_path(vote: true, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true %>
+	  <% end %>
 	</div>
   <% end %>
 </div>
@@ -22,12 +26,16 @@
   <% if @poll.poll_items.last.url.present? %>
     <!-- Link_to should trigger Votes#create action to validate and save this vote with a 'vote:true' param -->
 	<div id="item_b_image">
-	  <%= link_to image_tag(@poll.poll_items.last.url), poll_votes_path(vote: false, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true %>
+	  <% if @can_vote %>
+	    <%= link_to image_tag(@poll.poll_items.last.url), poll_votes_path(vote: false, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true %>
+	  <% end %>
 	</div>
   <% else %>
     <!-- Link_to should trigger Votes#create action to validate and save this vote with a 'vote:true' param -->
 	<div id="item_b_image">
-	  <%= link_to (image_tag @poll.poll_items.last.avatar_b.url), poll_votes_path(vote: false, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true %>
+	  <% if @can_vote %>
+	    <%= link_to (image_tag @poll.poll_items.last.avatar_b.url), poll_votes_path(vote: false, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true %>
+	  <% end %>
 	</div>
   <% end %>
 </div>
