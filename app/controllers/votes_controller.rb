@@ -6,7 +6,7 @@ class VotesController < ApplicationController
     @vote = Vote.new(vote: params[:vote], user_id: @user.id, poll_id: params[:poll_id])
     respond_to do |format|
       if @vote.save!
-        #Grab the vote count totals and pass them as JSON for AJAX call
+        #Grab the vote count totals and pass them as JSON for AJAX call 
         vote_count_a = Vote.where(poll_id: @poll.id, vote: true).length
         vote_count_b = Vote.where(poll_id: @poll.id, vote: false).length
 
