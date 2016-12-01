@@ -1,6 +1,6 @@
 class PollItem < ApplicationRecord
   belongs_to :poll
-  has_one :poll_item_type
+  # has_one :poll_item_type
 
   has_attached_file :avatar_a
   has_attached_file :avatar_b

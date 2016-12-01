@@ -5,7 +5,6 @@ class CreatePollItems < ActiveRecord::Migration[5.0]
       t.boolean :item_a
       t.string :url
       t.references :poll, foreign_key: true
-      t.references :poll_item_type, foreign_key: true
 
       t.timestamps
     end

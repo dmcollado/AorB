@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 20161130225815) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "poll_item_types", force: :cascade do |t|
     t.string   "code"
     t.string   "type"
     t.integer  "poll_item_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["poll_item_id"], name: "index_poll_item_types_on_poll_item_id"
+    t.index ["poll_item_id"], name: "index_poll_item_types_on_poll_item_id", using: :btree
   end
 
   create_table "poll_items", force: :cascade do |t|
@@ -26,7 +29,6 @@ ActiveRecord::Schema.define(version: 20161130225815) do
     t.boolean  "item_a"
     t.string   "url"
     t.integer  "poll_id"
-    t.integer  "poll_item_type_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.string   "avatar_a_file_name"
@@ -37,8 +39,7 @@ ActiveRecord::Schema.define(version: 20161130225815) do
     t.string   "avatar_b_content_type"
     t.integer  "avatar_b_file_size"
     t.datetime "avatar_b_updated_at"
-    t.index ["poll_id"], name: "index_poll_items_on_poll_id"
-    t.index ["poll_item_type_id"], name: "index_poll_items_on_poll_item_type_id"
+    t.index ["poll_id"], name: "index_poll_items_on_poll_id", using: :btree
   end
 
   create_table "polls", force: :cascade do |t|
@@ -48,7 +49,7 @@ ActiveRecord::Schema.define(version: 20161130225815) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "expiration"
-    t.index ["user_id"], name: "index_polls_on_user_id"
+    t.index ["user_id"], name: "index_polls_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,8 +70,13 @@ ActiveRecord::Schema.define(version: 20161130225815) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["poll_id"], name: "index_votes_on_poll_id"
-    t.index ["user_id"], name: "index_votes_on_user_id"
+    t.index ["poll_id"], name: "index_votes_on_poll_id", using: :btree
+    t.index ["user_id"], name: "index_votes_on_user_id", using: :btree
   end
 
+  add_foreign_key "poll_item_types", "poll_items"
+  add_foreign_key "poll_items", "polls"
+  add_foreign_key "polls", "users"
+  add_foreign_key "votes", "polls"
+  add_foreign_key "votes", "users"
 end
