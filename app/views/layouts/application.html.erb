@@ -39,8 +39,7 @@
         <li><i class="fa fa-share-alt fa-fw" aria-hidden="true"></i>&nbsp;Share It</li>
 
         <li><fb:login-button scope="public_profile,email,user_friends" onlogin="checkLoginState();"></fb:login-button></li>
-        <li><%= link_to "Real Login", facebook_token_path, id: 'login-link' %></li>
-        <li><%= link_to "Token Transfer", facebook_token_path, id: 'token-transfer-link' %></li>
+        <li><%= link_to "Facebook Login w/ Token", facebook_token_path, id: 'login-link' %></li>
         <li>
           <div id="omniauth-login">
             <% if current_user %>
