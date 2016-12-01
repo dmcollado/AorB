@@ -1,26 +1,41 @@
 
+
 <div id="poll-item-a" class="poll-item">
+
+  <div id="vote-count-a" class="vote-count <%= "show-vote-count" if !@can_vote %>">
+    <%= @votes_a.length %>
+  </div>
+
   <div id="item-a-image-container" class="item-image-container">
-    <%= link_to poll_votes_path(vote: true, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true do %> 
-    <%= image_tag @poll.poll_items.first.avatar_a.url, id: "item-a-image", class: "poll-item-image tall-image" %>
+  <% if @can_vote %>
+    <%= link_to poll_votes_path(vote: true, poll_id: @poll.id), method: :post, class: 'vote-link' do %> 
+      <%= image_tag @poll.poll_items.first.avatar_a.url, id: "item-a-image", class: "poll-item-image tall-image" %>
     <% end %>
+  <% else %>
+    <%= image_tag @poll.poll_items.first.avatar_a.url, id: "item-a-image", class: "poll-item-image tall-image drop-opacity" %>
+  <% end %>
   </div>
 </div>
 
 <div class="poll-middle">
-  <div id="vote-count-a" class="vote-count">
-    <%= @votes_a.length %>
-  </div>
+
   <button type="submit" class="submit-btn btn-vote">Vote</button>
-  <div id="vote-count-b" class="vote-count">
-    <%= @votes_b.length %> 
-  </div>
+
 </div>
 
 <div id="poll-item-b" class="poll-item">
+
+  <div id="vote-count-b" class="vote-count <%= "show-vote-count" if !@can_vote %>">
+    <%= @votes_b.length %>
+  </div>
+
   <div id="item-b-image-container" class="item-image-container">
-    <%= link_to poll_votes_path(vote: false, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true do %> 
-    <%= image_tag @poll.poll_items.last.avatar_b.url, id: "item-b-image", class: "poll-item-image wide-image" %>
+    <% if @can_vote %>
+      <%= link_to poll_votes_path(vote: false, poll_id: @poll.id), method: :post, class: 'vote-link' do %> 
+      <%= image_tag @poll.poll_items.last.avatar_b.url, id: "item-b-image", class: "poll-item-image wide-image" %>
+      <% end %>
+    <% else %>
+      <%= image_tag @poll.poll_items.first.avatar_a.url, id: "item-b-image", class: "poll-item-image wide-image drop-opacity" %>
     <% end %>
   </div>
 </div>
