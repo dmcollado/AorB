@@ -2,7 +2,14 @@ Rails.application.routes.draw do
   
   root 'polls#new'
 
+  # facebook token route
   get 'facebook/token'
+
+  # omniauth routes
+  get 'auth/:provider/callback' => 'sessions#create'
+  get 'auth/twitter', as: 'twitter_login'
+
+  get 'logout' => 'sessions#destroy'
 
   resources :users
 
