@@ -12,7 +12,7 @@ class PollsController < ApplicationController
     @votes = Vote.all
     @votes_a = Vote.where(poll_id: @poll.id, vote: true)
     @votes_b = Vote.where(poll_id: @poll.id, vote: false)
-    
+    @can_vote = !cookies["poll_#{@poll.id}"]
   end
 
   def create
