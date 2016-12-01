@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // # Place all the behaviors and hooks related to the matching controller here.
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
@@ -18,14 +19,15 @@
 // //   var itemb = $("#item_b");
 // // }
 
-
-$(document).on("turbolinks:load", function() {
-  $(document).on("keyup, change", "input#item_a_url", function() {
-  	$("#item_a_image > img").attr("src", $(this).val());
+// Don't know who wrote this, or what it does. -R 
+$(function() {
+  $(document).on("keyup, change", "input#item-a-url", function() {
+  	$("#item-a-image").attr("src", $(this).val());
   })
   $(document).on("keyup, change", "input#item-b-url", function() {
     $("#item-b-image > img").attr("src", $(this).val());
   })
+
   $(document).on("input", "input#description", function urlGen() {
     var twitter_url = "https://twitter.com/intent/tweet?text=" 
       + encodeURIComponent($(this).val()) 
@@ -129,8 +131,6 @@ $(document).on('turbolinks:load', function() {
   $('.poll-middle-text').toggleClass('hide');
 
 })
-
-
 
 
 //Show the image that has been selected by the user
