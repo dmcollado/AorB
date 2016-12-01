@@ -9,6 +9,7 @@ $(function() {
   })
 })
 
+
 $(document).on('turbolinks:load', function() {
   
   console.log("loaded.");
@@ -22,9 +23,6 @@ $(document).on('turbolinks:load', function() {
 
   setPollImageHeight();
 
-
-
-
   $(window).bind("resize", function(){
     setPollImageHeight();
   });
@@ -34,28 +32,6 @@ $(document).on('turbolinks:load', function() {
     $(formInput).unwrap();
   }
 
-  //Put in a vote
-  $('.vote-link').click(function(e){
-    e.preventDefault();
-    e.stopPropagation();
-    var url = $(this).attr('href');
-    $.ajax({
-      url: url,
-      type: "post",
-      dataType: "JSON"
-    })
-    .done(function(data){
-      console.log(data);
-      $('.vote-link').delay(500).removeAttr('href');
-      $('#vote-count-a').html(data.vote_count_a);
-      $('#vote-count-b').html(data.vote_count_b);
-      $('.poll-item-image').addClass('drop-opacity');
-      $('.vote-count').addClass('show-vote-count');
-    });
-
-
-
-  });
 
 //show and hide the menu
   $('.btn-menu').click(function() {
