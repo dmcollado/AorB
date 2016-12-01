@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  validates :provider, presence: true
+  # validates :provider, presence: true
 
   # github
   def self.create_with_omniauth(auth)
