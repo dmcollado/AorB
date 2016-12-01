@@ -1,11 +1,39 @@
-// Don't know who wrote this, or what it does. -R
-$(function() {
-  $(document).on("keyup, change", "input#item-a-url", function() {
-  	$("#item-a-image").attr("src", $(this).val());
+// # Place all the behaviors and hooks related to the matching controller here.
+// # All this logic will automatically be available in application.js.
+// # You can use CoffeeScript in this file: http://coffeescript.org/
+// main = function() {
+//   previewItemA();
+//   // previewItemB();
+// }
 
+// previewItemA = function() {
+//   var itemA = $("#item_a");
+//   itemA.click(function(e) {
+//     e.preventDefault();
+//     console.log("Item A clicked");
+//   });
+// }
+
+// // previewItemB = function() {
+// //   var itemb = $("#item_b");
+// // }
+
+
+$(document).on("turbolinks:load", function() {
+  $(document).on("keyup, change", "input#item_a_url", function() {
+  	$("#item_a_image > img").attr("src", $(this).val());
   })
   $(document).on("keyup, change", "input#item-b-url", function() {
     $("#item-b-image > img").attr("src", $(this).val());
+  })
+  $(document).on("input", "input#description", function urlGen() {
+    var twitter_url = "https://twitter.com/intent/tweet?text=" 
+      + encodeURIComponent($(this).val()) 
+      + "&url=" + encodeURIComponent(window.location.href)
+      + "&hashtags=" + "ThisOrThat";
+    $("#twitter-btn").attr("href", twitter_url);
+    $("meta[property='og\\:description']").attr("content", $(this).val());
+    $("#wa_btn").attr("data-text", $(this).val());
   })
 })
 

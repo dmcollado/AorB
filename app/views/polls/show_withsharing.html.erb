@@ -1,0 +1,55 @@
+<div id="poll-item-a" class="poll-item">
+  <div id="item-a-image-container" class="item-image-container">
+    <%= link_to poll_votes_path(vote: true, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true do %> 
+    <%= image_tag @poll.poll_items.first.avatar_a.url, id: "item-a-image", class: "poll-item-image tall-image" %>
+    <% end %>
+  </div>
+</div>
+
+<!-- Poll description and sharing options -->
+<div id="share">
+  <div id="description">
+    <%= label_tag "Describe your poll" %>
+	<%= text_field_tag :description %>
+  </div>
+  <p> Share your poll with friends on: </p>
+  <div id="social-links">
+    <!-- Facebook sharing link code -->
+    <div class="fb-share-button" data-layout="button" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?src=sdkpreparse">Share</a></div>
+	
+	<a class="twitter-share-button" id="twitter-btn" href="https://twitter.com/intent/tweet">Tweet</a>
+
+	<a href="whatsapp://send" data-text="Take a look at this awesome website:" data-href="" class="wa_btn wa_btn_s">Share</a>
+  </div>
+</div>
+
+<!-- Poll expiration status -->
+<div id="expiration" width="100%">
+  <%= (Time.now - @poll.created_at) %>
+</div>
+
+<%= link_to 'Edit', edit_poll_path(@poll) %> |
+<%= link_to 'Back', polls_path %>
+
+<script src="//cdn.jsdelivr.net/whatsapp-sharing/1.3.3/whatsapp-button.js"/>
+<script type="text/javascript"> 	if(typeof wabtn4fg==="undefined")   {wabtn4fg=1;h=document.head||document.getElementsByTagName("head")[0],s=document.createElement("script");s.type="text/javascript";s.src="//cdn.jsdelivr.net/whatsapp-sharing/1.3.3/whatsapp-button.js";h.appendChild(s)}</script>
+
+<div class="poll-middle">
+  <div id="vote-count-a" class="vote-count">
+    <%= @votes_a.length %>
+  </div>
+  <button type="submit" class="submit-btn btn-vote">Vote</button>
+  <div id="vote-count-b" class="vote-count">
+    <%= @votes_b.length %>
+  </div>
+</div>
+
+<div id="poll-item-b" class="poll-item">
+  <div id="item-b-image-container" class="item-image-container">
+    <%= link_to poll_votes_path(vote: false, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true do %> 
+    <%= image_tag @poll.poll_items.last.avatar_b.url, id: "item-b-image", class: "poll-item-image wide-image" %>
+    <% end %>
+  </div>
+</div>
+
+>>>>>>> 49c33f6e8f1563efd20098bb7d5dd26e3c0cff0c
