@@ -4,8 +4,8 @@
     <title>AorB</title>
     <%= csrf_meta_tags %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -30,6 +30,16 @@
   </head>
 
   <body>
+
+    <div class="menu-container">
+      <a class="btn-menu"><i class="fa fa-navicon"></i></a>
+      <h3 class="menu-title"><%= link_to "this or that", root_path %></h3>
+      <ul class="menu-inner">
+        <li><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Log In</li>
+        <li><i class="fa fa-plus fa-fw" aria-hidden="true"></i>&nbsp;<%= link_to "New Poll", root_path %></li>
+        <li><i class="fa fa-share-alt fa-fw" aria-hidden="true"></i>&nbsp;Share It</li>
+      </ul>
+    </div>
 
     <div id="container" class="container">
       <%= yield %>

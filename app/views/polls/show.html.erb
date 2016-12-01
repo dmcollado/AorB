@@ -1,67 +1,9 @@
-<div id="header">
-   <p id="notice"><%= notice %></p>
-   <h1>This is Your Poll</h1>
-</div>
-
-<div class="poll_item_a">
-<% if ((Time.now - @poll.created_at)/60) < @poll.expiration %>
-  <% if @poll.poll_items.first.url.present? %>
-    <!-- Link_to should trigger Votes#create action to validate and save this vote with a 'vote:true' param -->
-	<div id="item_a_image">
-	  <%= link_to image_tag(@poll.poll_items.first.url), poll_votes_path(vote: true, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true %>	
-	</div>
-  <% else %>
-    <!-- Link_to should trigger Votes#create action to validate and save this vote with a 'vote:true' param -->
-	<div id="item_a_image">
-	  <%= link_to image_tag(@poll.poll_items.first.avatar_a.url), poll_votes_path(vote: true, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true %>
-	</div>
-  <% end %>
-</div>
-
-<div class="poll_item_b">
-  <% if @poll.poll_items.last.url.present? %>
-    <!-- Link_to should trigger Votes#create action to validate and save this vote with a 'vote:true' param -->
-	<div id="item_b_image">
-	  <%= link_to image_tag(@poll.poll_items.last.url), poll_votes_path(vote: false, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true %>
-	</div>
-  <% else %>
-    <!-- Link_to should trigger Votes#create action to validate and save this vote with a 'vote:true' param -->
-	<div id="item_b_image">
-	  <%= link_to (image_tag @poll.poll_items.last.avatar_b.url), poll_votes_path(vote: false, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true %>
-	</div>
-  <% end %>
-</div>
-<% else %>
-<div class="poll_item_a">
-  <% if @poll.poll_items.first.url.present? %>
-	<div id="item_a_image">
-	  <%= image_tag(@poll.poll_items.first.url) %>	
-	</div>
-  <% else %>
-	<div id="item_a_image">
-	  <%= image_tag(@poll.poll_items.first.avatar_a.url) %>
-	</div>
-  <% end %>
-</div>
-<div class="poll_item_b">
-  <% if @poll.poll_items.last.url.present? %>
-	<div id="item_b_image">
-	  <%= image_tag(@poll.poll_items.last.url) %>
-	</div>
-  <% else %>
-	<div id="item_b_image">
-	  <%= image_tag(@poll.poll_items.last.avatar_b.url) %>
-	</div>
-  <% end %>
-</div>
-<% end %>
-
-<!-- Vote counters -->
-<div id="votes_a">
-  <%= @votes_a.length %>
-</div>
-<div id="votes_b">
-  <%= @votes_b.length %>
+<div id="poll-item-a" class="poll-item">
+  <div id="item-a-image-container" class="item-image-container">
+    <%= link_to poll_votes_path(vote: true, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true do %> 
+    <%= image_tag @poll.poll_items.first.avatar_a.url, id: "item-a-image", class: "poll-item-image tall-image" %>
+    <% end %>
+  </div>
 </div>
 
 <!-- Poll description and sharing options -->
@@ -91,3 +33,23 @@
 
 <script src="//cdn.jsdelivr.net/whatsapp-sharing/1.3.3/whatsapp-button.js"/>
 <script type="text/javascript"> 	if(typeof wabtn4fg==="undefined")   {wabtn4fg=1;h=document.head||document.getElementsByTagName("head")[0],s=document.createElement("script");s.type="text/javascript";s.src="//cdn.jsdelivr.net/whatsapp-sharing/1.3.3/whatsapp-button.js";h.appendChild(s)}</script>
+
+<div class="poll-middle">
+  <div id="vote-count-a" class="vote-count">
+    <%= @votes_a.length %>
+  </div>
+  <button type="submit" class="submit-btn btn-vote">Vote</button>
+  <div id="vote-count-b" class="vote-count">
+    <%= @votes_b.length %>
+  </div>
+</div>
+
+<div id="poll-item-b" class="poll-item">
+  <div id="item-b-image-container" class="item-image-container">
+    <%= link_to poll_votes_path(vote: false, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true do %> 
+    <%= image_tag @poll.poll_items.last.avatar_b.url, id: "item-b-image", class: "poll-item-image wide-image" %>
+    <% end %>
+  </div>
+</div>
+
+>>>>>>> 49c33f6e8f1563efd20098bb7d5dd26e3c0cff0c

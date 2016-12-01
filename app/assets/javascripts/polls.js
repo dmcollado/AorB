@@ -42,10 +42,11 @@ $(document).on('turbolinks:load', function() {
   
   console.log("loaded.");
 
+  $('.submit-btn').prop('disabled', true);
+
   function setPollImageHeight(){
     var pollImageWidth = $('.poll-item').width();
     $('.poll-item').css('height', pollImageWidth);
-    // $('.poll-item-image').css('height', pollImageWidth);
     }
 
   setPollImageHeight();
@@ -59,6 +60,11 @@ $(document).on('turbolinks:load', function() {
     $(formInput).unwrap();
   }
 
+
+//show and hide the menu
+  $('.btn-menu').click(function() {
+    $('.menu-container').toggleClass('show-menu');
+  });
 
 
 //hide and show elements when the reset buttons are clicked. Needs to be refactored.
@@ -87,8 +93,9 @@ $(document).on('turbolinks:load', function() {
     resetFormElement('#poll-file-a');
     resetFormElement('#poll-capture-a');
 
-    //remove the ready button. Doesn't check if it's actually set.
+    //remove the ready from button. Doesn't check if it's actually set.
     $('.submit-btn').removeClass('ready');
+    $('.submit-btn').prop('disabled', true);
 
     //remove the size classes for the image
     $('#item-a-image').removeClass('tall-image wide-image');
@@ -104,10 +111,12 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('#reset-button-b').click(function(event) {
+    $('#item-b-image').attr('src', '');
     $('#poll-item-b > .poll-inner').toggle('visibility');
     resetFormElement('#poll-file-b');
     resetFormElement('#poll-capture-b');
     $('.submit-btn').removeClass('ready');
+    $('.submit-btn').prop('disabled', true);
     $('#item-b-image').removeClass('tall-image wide-image');
     $(this).toggleClass('hide');
     $('#middle-text-b').delay(500).toggleClass('hide');
@@ -127,42 +136,42 @@ $(document).on('turbolinks:load', function() {
 //Show the image that has been selected by the user
 var openFile = function(event, pollLetter) {
 
-    var input = event.target;
-    var reader = new FileReader();
+  var input = event.target;
+  var reader = new FileReader();
 
-    reader.onload = function(){
-      var itemImage = "#item-" + pollLetter + "-image";
-      var dataURL = reader.result;
-      var output = document.querySelector(itemImage);
-      output.src = dataURL;
+  reader.onload = function(){
+    var itemImage = "#item-" + pollLetter + "-image";
+    var dataURL = reader.result;
+    var output = document.querySelector(itemImage);
+    output.src = dataURL;
 
-      //set the reset button letter
-      var resetButton = "#reset-button-" + pollLetter;
+    //set the reset button letter
+    var resetButton = "#reset-button-" + pollLetter;
 
-      //hide the image upload elements
-      $('#poll-item-' + pollLetter + ' > .poll-inner').toggle('visibility');
+    //hide the image upload elements
+    $('#poll-item-' + pollLetter + ' > .poll-inner').toggle('visibility');
 
-      //show the reset button
-      $(resetButton).toggleClass('hide');
+    //show the reset button
+    $(resetButton).toggleClass('hide');
 
-      //hide the this or that text
-      $('#middle-text-' + pollLetter).delay(500).toggleClass('hide');
+    //hide the this or that text
+    $('#middle-text-' + pollLetter).delay(500).toggleClass('hide');
 
-      //if the image is horizontal, change the css so it fills the circle
-      if ($(itemImage).height() < $(itemImage).width()){
-        $(itemImage).toggleClass('wide-image');
-      } else {
-        console.log($(itemImage).height());
-        console.log($(itemImage).width());
-        $(itemImage).toggleClass('tall-image');
-      };
-
-      //if both images are set, change the submit button
-      if ($('#item-a-image').attr('src') && $('#item-b-image').attr('src')) {
-        $('.submit-btn').addClass('ready');
-      }
-
+    //if the image is horizontal, change the css so it fills the circle
+    if ($(itemImage).height() < $(itemImage).width()){
+      $(itemImage).toggleClass('wide-image');
+    } else {
+      console.log($(itemImage).height());
+      console.log($(itemImage).width());
+      $(itemImage).toggleClass('tall-image');
     };
-    reader.readAsDataURL(input.files[0]);
-  };
 
+    //if both images are set, change the submit button
+    if ($('#item-a-image').attr('src') && $('#item-b-image').attr('src')) {
+      $('.submit-btn').removeAttr('disabled');
+      $('.submit-btn').addClass('ready');
+    }
+
+  };
+  reader.readAsDataURL(input.files[0]);
+};
