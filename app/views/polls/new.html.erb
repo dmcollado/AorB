@@ -4,12 +4,6 @@
   the FB.login() function when clicked.
 -->
 
-<fb:login-button scope="public_profile,email,user_friends" onlogin="checkLoginState();">
-</fb:login-button>
-
-<div id="status">
-</div>
-
 <%= form_for @poll, :html => {:class => 'new-poll'} do |item| %>
 
 <div id="poll-item-a" class="poll-item">
@@ -54,20 +48,4 @@
     <% hidden_field(:description, "description default") %>
 </div>
 <% end %>
-
-<%= link_to "Real Login", facebook_token_path, id: 'login-link' %>
-
-<%= link_to "Token Transfer", facebook_token_path, id: 'token-transfer-link' %>
-
-<div id="omniauth-login">
-  <% if current_user %>
-    <%# user is logged in %>
-    Welcome <%= current_user.name %>!<br>
-    <%= link_to 'Sign Out', logout_path %>
-  <% else %>
-    <%# user is logged out %>
-    You are not logged in.<br>
-    <%= link_to "Sign in with Twitter", twitter_login_path %>
-  <% end %>
-</div>
 

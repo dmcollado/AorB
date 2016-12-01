@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AorB</title>
+    <title>This or That</title>
     <%= csrf_meta_tags %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -23,7 +23,6 @@
 	  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/5.0.0/normalize.css">
 	  <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css">    
 
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -38,6 +37,27 @@
         <li><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Log In</li>
         <li><i class="fa fa-plus fa-fw" aria-hidden="true"></i>&nbsp;<%= link_to "New Poll", root_path %></li>
         <li><i class="fa fa-share-alt fa-fw" aria-hidden="true"></i>&nbsp;Share It</li>
+
+        <li><fb:login-button scope="public_profile,email,user_friends" onlogin="checkLoginState();"></fb:login-button></li>
+        <li><%= link_to "Real Login", facebook_token_path, id: 'login-link' %></li>
+        <li><%= link_to "Token Transfer", facebook_token_path, id: 'token-transfer-link' %></li>
+        <li>
+          <div id="omniauth-login">
+            <% if current_user %>
+              <%# user is logged in %>
+              Welcome <%= current_user.name %>!<br>
+              <%= link_to 'Sign Out', logout_path %>
+            <% else %>
+              <%# user is logged out %>
+              You are not logged in.<br>
+              <%= link_to "Sign in with Twitter", twitter_login_path %>
+              <%= link_to "Sign in with Facebook", facebook_login_path %>
+            <% end %>
+          </div> 
+        </li> 
+
+<div id="status">
+</div>
       </ul>
     </div>
 
