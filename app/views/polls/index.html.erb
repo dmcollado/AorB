@@ -1,2 +1,11 @@
-<h1>Polls#index</h1>
-<p>Find me in app/views/polls/index.html.erb</p>
+<h1>These are your polls</h1>
+<ul>
+	<% @polls.each do |poll| %>
+	  <li>
+	    <%= link_to poll_path(id: poll.id) do %>
+	      <%= image_tag poll.poll_items.first.avatar_a.url, id: "item-a-thumb" %>
+	      <%= image_tag poll.poll_items.last.avatar_b.url, id: "item-b-thumb" %>
+	    <% end %>
+	  </li>
+</ul>
+<% end %>

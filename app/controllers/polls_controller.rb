@@ -1,9 +1,12 @@
 class PollsController < ApplicationController
-  before_action :set_poll, except: [:new, :create]
+  before_action :set_poll, except: [:new, :create, :index]
   
   def new
-    # @user = User.find_by(name: "anon")
   	@poll = Poll.new
+    if current_user
+      @polls = Poll.where(user_id: current_user.id)
+      @votes = Vote.where(user_id: current_user.id)
+    end
   	@item_a = @poll.poll_items.new
   	@item_b = @poll.poll_items.new
   end
@@ -17,7 +20,11 @@ class PollsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(name: "anon")
+    if !current_user
+      @user = User.find_by(name: "anon")
+    else
+      @user = current_user
+    end
     @expiration = 100
   	@poll = Poll.new(user_id: @user.id, expiration: @expiration)
     @poll.save
@@ -48,6 +55,10 @@ class PollsController < ApplicationController
         format.json { render json: @poll.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def index
+    @polls = Poll.where(user_id: current_user.id)
   end
 
   def destroy
