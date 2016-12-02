@@ -21,6 +21,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
 gem 'aws-sdk', '~> 2'
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
