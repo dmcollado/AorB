@@ -37,14 +37,12 @@
         <li><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Log In</li>
         <li><i class="fa fa-plus fa-fw" aria-hidden="true"></i>&nbsp;<%= link_to "New Poll", root_path %></li>
         <li><i class="fa fa-share-alt fa-fw" aria-hidden="true"></i>&nbsp;Share It</li>
-
-        <li><fb:login-button scope="public_profile,email,user_friends" onlogin="checkLoginState();"></fb:login-button></li>
-        <li><%= link_to "Facebook Login w/ Token", facebook_token_path, id: 'login-link' %></li>
         <li>
           <div id="omniauth-login">
             <% if current_user %>
               <%# user is logged in %>
               Welcome <%= current_user.name %>!<br>
+              <%= image_tag current_user.picture %>
               <%= link_to 'Sign Out', logout_path %>
             <% else %>
               <%# user is logged out %>
@@ -52,6 +50,7 @@
               <li><%= link_to "Sign in with Twitter", twitter_login_path %></li>
               <li><%= link_to "Sign in with Facebook", facebook_login_path %></li>
             <% end %>
+
           </div> 
         </li> 
 
