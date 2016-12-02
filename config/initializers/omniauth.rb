@@ -4,8 +4,9 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
   provider :facebook, ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_APP_SECRET"],
     client_options: {
-      site: 'https://graph.facebook.com/v3.0',
-      authorize_url: "https://www.facebook.com/v3.0/dialog/oauth"
+      site: 'https://graph.facebook.com/v2.8',
+      authorize_url: "https://www.facebook.com/v2.8/dialog/oauth",
+      callback_url: "http://www.this-or-that.co/facebook/callback"
     }
 
 end
