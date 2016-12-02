@@ -1,6 +1,6 @@
 class PollsController < ApplicationController
   before_action :set_poll, except: [:new, :create]
-  
+
   def new
   	@poll = Poll.new
   	@item_a = @poll.poll_items.new
@@ -16,7 +16,11 @@ class PollsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(name: "anon")
+    if !current_user
+      @user = User.new(id: 1, name: "anon")
+    else
+      @user=current_user
+    end
     @expiration = 100
   	@poll = Poll.new(user_id: @user.id, expiration: @expiration)
     @poll.save
@@ -36,7 +40,7 @@ class PollsController < ApplicationController
     else
       "You fucked up!"
     end
-  	
+
   	respond_to do |format|
       if @poll.save! && @item_a.save! && @item_b.save!
         # format.html { redirect_to poll_path }
@@ -53,7 +57,7 @@ class PollsController < ApplicationController
   end
 
   private
- 
+
     def set_user
       if @user == nil
         @user = User.find_by(name: "anon")
