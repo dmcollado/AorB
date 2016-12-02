@@ -6,11 +6,7 @@ class User < ApplicationRecord
       user.provider = auth['provider']
       user.uid = auth['uid']
       user.name = auth['info']['name']
-      if user.provider == 'facebook'
-      	user.picture = auth.info.image if auth.info.image.present?
-      elsif user.provider == 'twitter'
-      	user.picture = auth.info.image if auth.info.image.present?
-      end      	
+      user.picture = auth.info.image if auth.info.image.present?   	
     end
   end
 end
