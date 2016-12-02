@@ -1,42 +1,12 @@
-// # Place all the behaviors and hooks related to the matching controller here.
-// # All this logic will automatically be available in application.js.
-// # You can use CoffeeScript in this file: http://coffeescript.org/
-// main = function() {
-//   previewItemA();
-//   // previewItemB();
-// }
-
-// previewItemA = function() {
-//   var itemA = $("#item_a");
-//   itemA.click(function(e) {
-//     e.preventDefault();
-//     console.log("Item A clicked");
-//   });
-// }
-
-// // previewItemB = function() {
-// //   var itemb = $("#item_b");
-// // }
-
-
-$(document).on("turbolinks:load", function() {
-  $(document).on("keyup, change", "input#item_a_url", function() {
-  	$("#item_a_image > img").attr("src", $(this).val());
+// Don't know who wrote this, or what it does. -R
+$(function() {
+  $(document).on("keyup, change", "input#item-a-url", function() {
+    $("#item-a-image").attr("src", $(this).val());
   })
   $(document).on("keyup, change", "input#item-b-url", function() {
     $("#item-b-image > img").attr("src", $(this).val());
   })
-  $(document).on("input", "input#description", function urlGen() {
-    var twitter_url = "https://twitter.com/intent/tweet?text=" 
-      + encodeURIComponent($(this).val()) 
-      + "&url=" + encodeURIComponent(window.location.href)
-      + "&hashtags=" + "ThisOrThat";
-    $("#twitter-btn").attr("href", twitter_url);
-    $("meta[property='og\\:description']").attr("content", $(this).val());
-    $("#wa_btn").attr("data-text", $(this).val());
-  })
 })
-
 
 $(document).on('turbolinks:load', function() {
   
@@ -51,6 +21,11 @@ $(document).on('turbolinks:load', function() {
 
   setPollImageHeight();
 
+  //share button stop click
+  $('#share-button > .share').click(function(e){
+    e.preventDefault();
+  });
+  
   $(window).bind("resize", function(){
     setPollImageHeight();
   });
@@ -61,13 +36,38 @@ $(document).on('turbolinks:load', function() {
   }
 
 
-//show and hide the menu
+  //Put in a vote
+  $('.vote-link').click(function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    var url = $(this).attr('href');
+    $.ajax({
+      url: url,
+      type: "post",
+      dataType: "JSON"
+    })
+    .done(function(data){
+
+      console.log(data);
+
+      $('.vote-link').delay(500).removeAttr('href');
+      $('#vote-count-a').html(data.vote_count_a);
+      $('#vote-count-b').html(data.vote_count_b);
+      $('.poll-item-image').addClass('drop-opacity');
+      $('.vote-count').addClass('show-vote-count');
+
+      publishNub();
+    });
+  });
+
+
+  //show and hide the menu
   $('.btn-menu').click(function() {
     $('.menu-container').toggleClass('show-menu');
   });
 
 
-//hide and show elements when the reset buttons are clicked. Needs to be refactored.
+  //hide and show elements when the reset buttons are clicked. Needs to be refactored.
   $('#reset-button-a').click(function(event) {
     //Clear the file out
 
@@ -123,12 +123,11 @@ $(document).on('turbolinks:load', function() {
     event.preventDefault();
   });
 
-
-
   //Remove .hide on load for animation in the middle
   $('.poll-middle-text').toggleClass('hide');
 
-})
+});
+
 
 
 

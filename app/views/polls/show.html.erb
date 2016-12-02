@@ -1,29 +1,70 @@
 
-<div id="poll-item-a" class="poll-item">
-  <div id="item-a-image-container" class="item-image-container">
-    <%= link_to poll_votes_path(vote: true, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true do %> 
-    <%= image_tag @poll.poll_items.first.avatar_a.url, id: "item-a-image", class: "poll-item-image tall-image" %>
-    <% end %>
-  </div>
-</div>
 
-<div class="poll-middle">
-  <div id="vote-count-a" class="vote-count">
+<div id="poll-item-a" class="poll-item">
+
+  <div id="vote-count-a" class="vote-count <%= "show-vote-count" if !@can_vote %>">
     <%= @votes_a.length %>
   </div>
-  <button type="submit" class="submit-btn btn-vote">Vote</button>
-  <div id="vote-count-b" class="vote-count">
-    <%= @votes_b.length %>
+
+  <div id="item-a-image-container" class="item-image-container">
+  <% if @can_vote %>
+    <%= link_to poll_votes_path(vote: true, poll_id: @poll.id), method: :post, class: 'vote-link' do %> 
+      <%= image_tag @poll.poll_items.first.avatar_a.url, id: "item-a-image", class: "poll-item-image tall-image" %>
+    <% end %>
+  <% else %>
+    <%= image_tag @poll.poll_items.first.avatar_a.url, id: "item-a-image", class: "poll-item-image tall-image drop-opacity" %>
+  <% end %>
   </div>
 </div>
 
+
+<div class="poll-middle" id="poll<%= @poll.id %>">
+
+  <button class="submit-btn btn-vote" disabled>Vote</button>
+
+</div>
+
+
 <div id="poll-item-b" class="poll-item">
+
+  <div id="vote-count-b" class="vote-count <%= "show-vote-count" if !@can_vote %>">
+    <%= @votes_b.length %>
+  </div>
+
   <div id="item-b-image-container" class="item-image-container">
-    <%= link_to poll_votes_path(vote: false, poll_id: @poll.id), method: :post, class: 'vote-link', remote: true do %> 
-    <%= image_tag @poll.poll_items.last.avatar_b.url, id: "item-b-image", class: "poll-item-image wide-image" %>
+    <% if @can_vote %>
+      <%= link_to poll_votes_path(vote: false, poll_id: @poll.id), method: :post, class: 'vote-link' do %> 
+      <%= image_tag @poll.poll_items.last.avatar_b.url, id: "item-b-image", class: "poll-item-image wide-image" %>
+      <% end %>
+    <% else %>
+      <%= image_tag @poll.poll_items.first.avatar_a.url, id: "item-b-image", class: "poll-item-image wide-image drop-opacity" %>
     <% end %>
   </div>
 </div>
 
-<script src="//cdn.jsdelivr.net/whatsapp-sharing/1.3.3/whatsapp-button.js"/>
-<script type="text/javascript">   if(typeof wabtn4fg==="undefined")   {wabtn4fg=1;h=document.head||document.getElementsByTagName("head")[0],s=document.createElement("script");s.type="text/javascript";s.src="//cdn.jsdelivr.net/whatsapp-sharing/1.3.3/whatsapp-button.js";h.appendChild(s)}</script>
+
+<div id="sharing-container">
+
+      <div class="whatsapp-c nds">
+        <a href="whatsapp://send?text=<%= share_text %>" data-action="share/whatsapp/share" class="whatsapp"><i class="fa fa-whatsapp fa-2x"></i></a>
+      </div>
+
+      <div class="facebook-c nds" >
+        <a href="https://www.facebook.com/sharer/sharer.php?u=<%= share_text %>" class="facebook"><i class="fa fa-facebook fa-2x"></i></a>
+      </div>
+
+      <div class="twitter-c nds">
+        <a href="https://twitter.com/home?status=<%= share_text %>" class="twitter"><i class="fa fa-twitter fa-2x"></i></a>
+      </div>
+
+      <div id="share-button">
+        <a href="#" class="share"><i class="fa fa-share-alt fa-2x"></i></a>
+      </div>
+
+</div>
+
+<% if !@can_vote %>
+  <%= javascript_tag do %>
+  publishNub();
+  <% end %>
+<% end %>

@@ -21,7 +21,7 @@ class PollsController < ApplicationController
 
   def create
     if !current_user
-      @user = User.find_by(name: "anon")
+      @user = User.new(id: 1, name: "anon")
     else
       @user = current_user
     end
@@ -44,7 +44,7 @@ class PollsController < ApplicationController
     else
       "You fucked up!"
     end
-  	
+
   	respond_to do |format|
       if @poll.save! && @item_a.save! && @item_b.save!
         # format.html { redirect_to poll_path }
@@ -65,7 +65,7 @@ class PollsController < ApplicationController
   end
 
   private
- 
+
     def set_user
       if @user == nil
         @user = User.find_by(name: "anon")
