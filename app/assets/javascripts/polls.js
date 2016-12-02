@@ -22,7 +22,10 @@ $(document).on('turbolinks:load', function() {
 
   setPollImageHeight();
 
-
+  //share button stop click
+  $('#share-button > .share').click(function(e){
+    e.preventDefault();
+  });
 
 
   $(window).bind("resize", function(){

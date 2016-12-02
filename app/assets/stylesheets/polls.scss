@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 * {
 	box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0,0,0,0); 
 }
 
 html, body {
@@ -19,6 +20,11 @@ body {
 	font-size: 14px;
 	font-family: 'Roboto', sans-serif;
 	background: #172942;
+}
+
+a {
+  color: #fff;
+  text-decoration: none; 
 }
 
 img {
