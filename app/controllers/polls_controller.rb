@@ -2,7 +2,7 @@ class PollsController < ApplicationController
   before_action :set_poll, except: [:new, :create]
   
   def new
-    @user = User.find_by(name: "anon")
+    # @user = User.find_by(name: "anon")
   	@poll = Poll.new
   	@item_a = @poll.poll_items.new
   	@item_b = @poll.poll_items.new
