@@ -125,11 +125,29 @@ $(document).on('turbolinks:load', function() {
 
   //Remove .hide on load for animation in the middle
   $('.poll-middle-text').toggleClass('hide');
+ 
+  ////////////////////////////////////////////////
+  // IMAGE MODAL STUFF
+  // Get the modal
+  var modal = document.getElementById('myModal');
 
+  // Get the image and insert it inside the modal - use its "alt" text as a caption
+  var img = document.getElementById('enlarge-image');
+  var modalImg = document.getElementById("img01");
+  img.onclick = function(e){
+    e.preventDefault();
+    modal.style.display = "block";
+    modalImg.src = this.src;
+  }
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() { 
+    modal.style.display = "none";
+  }
 });
-
-
-
 
 
 //Show the image that has been selected by the user

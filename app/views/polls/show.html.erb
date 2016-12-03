@@ -1,6 +1,5 @@
-
 <div id="poll-item-a" class="poll-item">
-
+  
   <div id="vote-count-a" class="vote-count <%= "show-vote-count" if !@can_vote %>">
     <%= @votes_a.length %>
   </div>
@@ -8,7 +7,7 @@
   <div id="item-a-image-container" class="item-image-container">
   <% if @can_vote %>
     <%= link_to poll_votes_path(vote: true, poll_id: @poll.id), method: :post, class: 'vote-link' do %> 
-      <%= image_tag @poll.poll_items.first.avatar_a.url, id: "item-a-image", class: "poll-item-image tall-image" %>
+      <%= image_tag @poll.poll_items.first.avatar_a.url , id: "item-a-image", class: "poll-item-image tall-image" %>
     <% end %>
   <% else %>
     <%= image_tag @poll.poll_items.first.avatar_a.url, id: "item-a-image", class: "poll-item-image tall-image drop-opacity" %>
@@ -16,13 +15,11 @@
   </div>
 </div>
 
-
 <div class="poll-middle" id="poll<%= @poll.id %>">
 
   <button class="submit-btn btn-vote" disabled>Vote</button>
 
 </div>
-
 
 <div id="poll-item-b" class="poll-item">
 
@@ -41,9 +38,7 @@
   </div>
 </div>
 
-
 <div id="sharing-container">
-
       <div class="whatsapp-c nds">
         <a href="whatsapp://send?text=<%= share_text %>" data-action="share/whatsapp/share" class="whatsapp"><i class="fa fa-whatsapp fa-2x"></i></a>
       </div>
@@ -59,7 +54,22 @@
       <div id="share-button">
         <a href="#" class="share"><i class="fa fa-share-alt fa-2x"></i></a>
       </div>
+</div>
 
+<!-- Trigger the Modal -->
+<%= image_tag @poll.poll_items.first.avatar_a.url, id: "enlarge-image" %>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- The Close Button -->
+  <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+
+  <!-- Modal Content (The Image) -->
+  <img class="modal-content" id="img01">
+
+  <!-- Modal Caption (Image Text) -->
+  <div id="caption"></div>
 </div>
 
 <% if !@can_vote %>
