@@ -564,13 +564,21 @@ form.new-poll {
 }
 
 #enlarge-image-A {
-	width: 30px;
-	height: 30px;
+	position: fixed;
+	width: 50px;
+	height: 50px;
+    top: 30px;
+    left: 30px;
+    z-index: 5;
 }
 
 #enlarge-image-B {
-	width: 30px;
-	height: 30px;
+	position: fixed;
+	width: 50px;
+	height: 50px;
+    bottom: 30px;
+    left: 30px;
+    z-index: 5;
 }
 
 
