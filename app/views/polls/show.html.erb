@@ -56,20 +56,24 @@
       </div>
 </div>
 
-<!-- Trigger the Modal -->
-<%= image_tag @poll.poll_items.first.avatar_a.url, id: "enlarge-image" %>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
+<!-- ENLARGE IMAGE POPUP MODALS -->
+<!-- Link for Modal A-->
+<%= image_tag @poll.poll_items.first.avatar_a.url, id: "enlarge-image-A" %>
+<!-- Modal A-->
+<div id="modalA" class="modal">
   <!-- The Close Button -->
-  <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+  <span class="close" onclick="document.getElementById('modalA').style.display='none'">&times;</span>
+  <img class="modal-content" id="imageA">
+</div>
 
-  <!-- Modal Content (The Image) -->
-  <img class="modal-content" id="img01">
+<!-- Link for Modal B-->
+<%= image_tag @poll.poll_items.last.avatar_b.url, id: "enlarge-image-B" %>
 
-  <!-- Modal Caption (Image Text) -->
-  <div id="caption"></div>
+<!-- Modal B-->
+<div id="modalB" class="modal">
+  <!-- The Close Button -->
+  <span class="close" onclick="document.getElementById('modalB').style.display='none'">&times;</span>
+  <img class="modal-content" id="imageB">
 </div>
 
 <% if !@can_vote %>
