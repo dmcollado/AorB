@@ -11,14 +11,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Pacifico|Baloo" rel="stylesheet">
+    <%= favicon_link_tag 'apple-touch-icon.png', rel: 'apple-touch-icon', type:'image/png' %>
+
 
     <!-- You can use Facebook Open Graph tags to customize link previews.
     Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
-    <meta property="og:url"           content="" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="title" />
-    <meta property="og:description"   content="description" />
-    <meta property="og:image"         content="thumbnail_image" />
+    <meta property="og:url" content="http://this-or-that.co" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="this or that" />
+    <meta property="og:description" content="When you can't decide, this or that." />
+    <meta property="og:image" content="<%= @og_image %>" />
 
     <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.3.1.min.js"></script>
 
