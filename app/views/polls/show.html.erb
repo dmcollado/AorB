@@ -38,7 +38,7 @@
       <%= image_tag @poll.poll_items.last.avatar_b.url, id: "item-b-image", class: "poll-item-image wide-image" %>
       <% end %>
     <% else %>
-      <%= image_tag @poll.poll_items.first.avatar_a.url, id: "item-b-image", class: "poll-item-image wide-image drop-opacity" %>
+      <%= image_tag @poll.poll_items.last.avatar_b.url, id: "item-b-image", class: "poll-item-image wide-image drop-opacity" %>
     <% end %>
   </div>
 </div>
@@ -62,6 +62,23 @@
         <a href="#" class="share"><i class="fa fa-share-alt fa-2x"></i></a>
       </div>
 
+</div>
+
+<div id="expand-button-a" class="expand-button">
+  <a class="magnify"><i class="fa fa-search-plus"></i></a>
+  <div class="expanded-image-container">
+   <%= image_tag @poll.poll_items.first.avatar_a.url, id: "expanded-image-a", class: "expanded-image" %>
+   </div>
+  <a class="minify"><i class="fa fa-search-minus fa-2x"></i></a>
+</div>
+
+
+<div id="expand-button-b" class="expand-button">
+  <a class="magnify"><i class="fa fa-search-plus"></i></a>
+  <div class="expanded-image-container">
+   <%= image_tag @poll.poll_items.last.avatar_b.url, id: "expanded-image-b", class: "expanded-image" %>
+   </div>
+  <a class="minify"><i class="fa fa-search-minus fa-2x"></i></a>
 </div>
 
 <% if !@can_vote %>

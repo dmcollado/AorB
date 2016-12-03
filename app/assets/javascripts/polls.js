@@ -126,6 +126,11 @@ $(document).on('turbolinks:load', function() {
   //Remove .hide on load for animation in the middle
   $('.poll-middle-text').toggleClass('hide');
 
+  //magnify and minify the images
+  $('.expand-button').click(function(){
+    $(this).toggleClass('expand-button-show');
+  });
+
 });
 
 

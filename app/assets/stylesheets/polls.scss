@@ -1,6 +1,5 @@
-// Place all the styles related to the polls controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* this or that */
+
 * {
 	box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(0,0,0,0); 
@@ -445,6 +444,86 @@ form.new-poll {
 	color: #b4cae4;
 }
 
+/* Expand Image Button */
+
+.expand-button{
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background: #0c1829;
+  position: fixed;
+  cursor: pointer;
+  box-shadow: 0px 2px 5px #0b131f;
+  overflow: hidden;
+  transition: all 0.3s;
+  z-index: 15;
+}
+
+#expand-button-a {
+  top: 1em;
+  left: 1em;
+}
+
+#expand-button-b {
+  bottom: 1em;
+  left: 1em;
+}
+
+.magnify {
+  position: relative;
+  display: block;
+  margin: 0.5em auto 0;
+  color: white;
+  text-align: center;
+  line-height: 1em;
+  font-weight: 100;
+}
+
+.minify {
+  position: relative;
+  display: block;
+  margin: 0.5em auto 0.5em;
+  color: white;
+  text-align: center;
+  line-height: 1em;
+  font-weight: 100;
+  animation: plus-out 0.3s;
+  transition: all 0.3s;
+}
+
+.expanded-image-container {
+  padding: 1em;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.expand-button img {
+  visibility: hidden;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 1em;
+}
+
+#expand-button-a.expand-button-show .magnify, #expand-button-b.expand-button-show .magnify {
+  visibility: hidden;
+}
+
+#expand-button-a.expand-button-show, #expand-button-b.expand-button-show {
+  width: 100%;
+  height: 100%;
+  left: initial;
+  top: initial;
+  bottom: initial;
+  border-radius: 0;
+  z-index: 25;
+}
+
+#expand-button-a.expand-button-show img, #expand-button-b.expand-button-show img {
+  visibility: visible;
+}
+
+
 /* For the menu button to stick to the menu */
 @media only screen and (min-width : 470px) {
 	.btn-menu {
@@ -493,20 +572,3 @@ form.new-poll {
 	}
 }
 
-/*******************************/
-/**  Styling for Polls/index ***/
-/*******************************/
-
-#item-a-thumb {
-	height: 75px;
-	width: 75px;
-}
-
-#item-b-thumb {
-	height: 75px;
-	width: 75px;
-}
-
-.poll-thumb-item {
-	display: inline;
-}
