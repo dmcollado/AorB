@@ -1,11 +1,14 @@
 <h1>These are your polls</h1>
-<ul>
-	<% @polls.each do |poll| %>
-	  <li>
-	    <%= link_to poll_path(id: poll.id) do %>
-	      <%= image_tag poll.poll_items.first.avatar_a.url, id: "item-a-thumb" %>
-	      <%= image_tag poll.poll_items.last.avatar_b.url, id: "item-b-thumb" %>
-	    <% end %>
-	  </li>
-</ul>
+
+<% @polls.each do |poll| %>
+  <div class="poll-thumb">
+    <%= link_to poll_path(id: poll.id) do %>
+       <div id="poll-thumb-item-a" class="poll-thumb-item">
+         <%= image_tag poll.poll_items.first.avatar_a.url, id: "item-a-thumb", class: "poll-thumb-image" %>
+       </div>
+       <div id="poll-thumb-item-a" class="poll-thumb-item">
+         <%= image_tag poll.poll_items.last.avatar_b.url, id: "item-b-thumb", class: "poll-thumb-image" %>
+       </div>
+	<% end %>
+  </div>
 <% end %>

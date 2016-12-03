@@ -12,6 +12,10 @@ class PollsController < ApplicationController
   end
 
   def show
+    if current_user
+      @polls = Poll.where(user_id: current_user.id)
+      @votes = Vote.where(user_id: current_user.id)
+    end
     @vote = Vote.new
     @votes = Vote.all
     @votes_a = Vote.where(poll_id: @poll.id, vote: true)
@@ -58,6 +62,7 @@ class PollsController < ApplicationController
   end
 
   def index
+    @user = current_user
     @polls = Poll.where(user_id: current_user.id)
   end
 
