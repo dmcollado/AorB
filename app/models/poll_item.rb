@@ -1,6 +1,6 @@
 class PollItem < ApplicationRecord
   belongs_to :poll
-  has_one :poll_item_type
+  # has_one :poll_item_type
 
   has_attached_file :avatar_a, :styles => {:large => ['800>', :jpg, :quality => 65]}, :convert_options => {:large => '-set colorspace sRGB -strip'}, :default_style => :large
   

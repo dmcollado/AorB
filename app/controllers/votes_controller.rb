@@ -1,9 +1,14 @@
 class VotesController < ApplicationController
-  before_action :set_poll
+  before_action :set_poll, except: [:by_user]
 
   def create
 
-  	@user = User.find_by(name: "anon")
+  	if !current_user
+      @user = User.find_by(name: "anon")
+    else
+      @user = current_user
+    end
+
     @vote = Vote.new(vote: params[:vote], user_id: @user.id, poll_id: params[:poll_id])
 
     respond_to do |format|
@@ -20,6 +25,11 @@ class VotesController < ApplicationController
         format.html { redirect_to @poll, notice: 'Your vote was NOT logged for some odd reason. Try again.' }
       end
     end
+  end
+
+  def by_user
+    @user = current_user
+    @votes = Vote.where(user_id: current_user.id)
   end
 
   private

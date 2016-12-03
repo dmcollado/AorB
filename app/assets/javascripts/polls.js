@@ -2,7 +2,6 @@
 $(function() {
   $(document).on("keyup, change", "input#item-a-url", function() {
     $("#item-a-image").attr("src", $(this).val());
-
   })
   $(document).on("keyup, change", "input#item-b-url", function() {
     $("#item-b-image > img").attr("src", $(this).val());
@@ -26,8 +25,7 @@ $(document).on('turbolinks:load', function() {
   $('#share-button > .share').click(function(e){
     e.preventDefault();
   });
-
-
+  
   $(window).bind("resize", function(){
     setPollImageHeight();
   });
@@ -36,6 +34,7 @@ $(document).on('turbolinks:load', function() {
     $(formInput).wrap('<form>').closest('form').get(0).reset();
     $(formInput).unwrap();
   }
+
 
   //Put in a vote
   $('.vote-link').click(function(e){
@@ -48,25 +47,27 @@ $(document).on('turbolinks:load', function() {
       dataType: "JSON"
     })
     .done(function(data){
+
       console.log(data);
+
       $('.vote-link').delay(500).removeAttr('href');
       $('#vote-count-a').html(data.vote_count_a);
       $('#vote-count-b').html(data.vote_count_b);
       $('.poll-item-image').addClass('drop-opacity');
       $('.vote-count').addClass('show-vote-count');
+
+      publishNub();
     });
-
-
-
   });
 
-//show and hide the menu
+
+  //show and hide the menu
   $('.btn-menu').click(function() {
     $('.menu-container').toggleClass('show-menu');
   });
 
 
-//hide and show elements when the reset buttons are clicked. Needs to be refactored.
+  //hide and show elements when the reset buttons are clicked. Needs to be refactored.
   $('#reset-button-a').click(function(event) {
     //Clear the file out
 
@@ -122,12 +123,11 @@ $(document).on('turbolinks:load', function() {
     event.preventDefault();
   });
 
-
-
   //Remove .hide on load for animation in the middle
   $('.poll-middle-text').toggleClass('hide');
 
-})
+});
+
 
 
 

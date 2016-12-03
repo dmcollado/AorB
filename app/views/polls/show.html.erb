@@ -1,5 +1,4 @@
 
-
 <div id="poll-item-a" class="poll-item">
 
   <div id="vote-count-a" class="vote-count <%= "show-vote-count" if !@can_vote %>">
@@ -18,9 +17,9 @@
 </div>
 
 
-<div class="poll-middle">
+<div class="poll-middle" id="poll<%= @poll.id %>">
 
-  <button type="submit" class="submit-btn btn-vote">Vote</button>
+  <button class="submit-btn btn-vote" disabled>Vote</button>
 
 </div>
 
@@ -62,3 +61,9 @@
       </div>
 
 </div>
+
+<% if !@can_vote %>
+  <%= javascript_tag do %>
+  publishNub();
+  <% end %>
+<% end %>
