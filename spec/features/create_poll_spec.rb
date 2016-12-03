@@ -2,6 +2,11 @@ require 'rails_helper'
 
 describe "In poll create page", :type => :feature do
 
+  it "Should have 0 of 2 images uploaded" do
+    visit '/'
+    expect(page).to have_content('choose an image', :count => 2)
+  end
+
   context "Only w/image A uploaded" do
     before do
       user = User.create(name:"tester", email:"test@test.cl") #def create --> polls controller is were we need to set id: 1 to execute the before do loop...
@@ -14,10 +19,10 @@ describe "In poll create page", :type => :feature do
       expect(page).to have_selector('.submit-btn', :text => "Vs")
     end
 
-    # it "Should have reset button A" do
-    #   expect(page).to have_selector('#reset-button-a:fa-close')
-    #   # expect(page).to have_selector('#reset-button-b')
-    # end
+    it "Should have reset button A visible and clickable" do
+      page.find('#reset-button-a').click
+      expect(page).to have_content('choose an image', :count => 2)
+    end
 
   end
 
@@ -31,8 +36,12 @@ describe "In poll create page", :type => :feature do
     it "Submit-btn should still = 'Vs'(not 'check')" do
       expect(page).to have_selector('.submit-btn', :text => "Vs")
     end
-  end
 
-# A backend test(?): from controller not to allow create a poll instance w/o 2 poll items?
+    it "Should have reset button B visible and clickable" do
+      page.find('#reset-button-b').click
+      expect(page).to have_content('choose an image', :count => 2)
+    end
+
+  end
 
 end

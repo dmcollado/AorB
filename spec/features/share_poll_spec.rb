@@ -19,14 +19,22 @@ describe "In share poll page", :type => :feature do
     expect(page).to have_selector('#item-b-image-container')
   end
 
-  it "Should have vote counter after clicking image A" do
+  it "Should have a clickeable menu button" do
+    find(".btn-menu").click
+  end
+
+  it "Should show a vote counter after clicking image A" do
     find("#item-a-image-container").click
     sleep 1
     expect(page).to have_selector('#vote-count-a')
   end
 
-  # it "Should have a text box for comments" do
-  #(??)
-  # end
+  it "Should have a share button w/ clickeable social media buttons" do
+    find("#share-button").click
+    sleep 1
+    find('.twitter-c').click
+    find('.whatsapp-c').click
+    find(".facebook-c").click
+  end
 
 end
