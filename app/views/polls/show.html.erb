@@ -10,10 +10,10 @@
   <div id="item-a-image-container" class="item-image-container">
   <% if @can_vote %>
     <%= link_to poll_votes_path(vote: true, poll_id: @poll.id), method: :post, class: 'vote-link' do %> 
-      <%= image_tag @poll.poll_items.first.avatar_a.url, id: "item-a-image", class: "poll-item-image tall-image" %>
+      <%= image_tag @poll.poll_items.first.avatar_a.url, id: "item-a-image", class: "poll-item-image" %>
     <% end %>
   <% else %>
-    <%= image_tag @poll.poll_items.first.avatar_a.url, id: "item-a-image", class: "poll-item-image tall-image drop-opacity" %>
+    <%= image_tag @poll.poll_items.first.avatar_a.url, id: "item-a-image", class: "poll-item-image drop-opacity" %>
   <% end %>
   </div>
 </div>
@@ -21,7 +21,7 @@
 
 <div class="poll-middle" id="poll<%= @poll.id %>">
 
-  <button class="submit-btn btn-vote" disabled>Vote</button>
+  <button class="btn-vote"><p class="vote-text">Vote</p></button>
 
 </div>
 
@@ -35,10 +35,10 @@
   <div id="item-b-image-container" class="item-image-container">
     <% if @can_vote %>
       <%= link_to poll_votes_path(vote: false, poll_id: @poll.id), method: :post, class: 'vote-link' do %> 
-      <%= image_tag @poll.poll_items.last.avatar_b.url, id: "item-b-image", class: "poll-item-image wide-image" %>
+      <%= image_tag @poll.poll_items.last.avatar_b.url, id: "item-b-image", class: "poll-item-image" %>
       <% end %>
     <% else %>
-      <%= image_tag @poll.poll_items.last.avatar_b.url, id: "item-b-image", class: "poll-item-image wide-image drop-opacity" %>
+      <%= image_tag @poll.poll_items.last.avatar_b.url, id: "item-b-image", class: "poll-item-image drop-opacity" %>
     <% end %>
   </div>
 </div>

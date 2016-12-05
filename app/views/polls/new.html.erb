@@ -7,7 +7,7 @@
     <%= item.file_field :avatar_a, :"onchange" => 'openFile(event, "a")', class: "choose-image", id: "poll-file-a", accept: "image/*" %>
     <label for="poll-file-a" class="btn-blue">choose an image</label>
     <%= item.file_field :avatar_a, :"onchange" => 'openFile(event, "a")', class: "take-photo", id: "poll-capture-a",  accept: "image/*", capture: "camera" %>
-    <label for="poll-capture-a"><i class="fa fa-4x fa-camera"></i></label>
+    <label for="poll-capture-a"><i class="fa fa-2x fa-camera"></i></label>
   </div>
   <div id="item-a-image-container" class="item-image-container">
     <img id="item-a-image" class="poll-item-image" src="" />
@@ -20,7 +20,7 @@
   <h3 id="middle-text-a" class="poll-middle-text hide">this</h3>
 
   <%#= submit_tag "Vs", class: "submit-btn" %>
-  <button type="submit" class="submit-btn">Vs</button>
+  <button type="submit" class="submit-btn">or</button>
 
   <h3 id="middle-text-b" class="poll-middle-text hide">that</h3>
 
@@ -30,7 +30,7 @@
 <div id="poll-item-b" class="poll-item">
   <div class="poll-inner">
     <%= item.file_field :avatar_b, :"onchange" => 'openFile(event, "b")', class: "take-photo", id: "poll-capture-b",  accept: "image/*", capture: "camera" %>
-    <label for="poll-capture-b"><i class="fa fa-4x fa-camera"></i></label>
+    <label for="poll-capture-b"><i class="fa fa-2x fa-camera"></i></label>
     <%= item.file_field :avatar_b, :"onchange" => 'openFile(event, "b")', class: "choose-image btn-yellow", id: "poll-file-b", accept: "image/*" %>
     <label for="poll-file-b" class="btn-yellow">choose an image</label>
   </div>

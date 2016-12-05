@@ -2,7 +2,9 @@
 <html>
   <head>
     <title>This or That</title>
-
+    <script>
+    document.documentElement.setAttribute("data-browser", navigator.userAgent);
+    </script>
     <%= csrf_meta_tags %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -35,31 +37,24 @@
       <a class="btn-menu"><i class="fa fa-navicon"></i></a>
       <h3 class="menu-title"><%= link_to "this or that", root_path %></h3>
       <ul class="menu-inner">
-        <li><i class="fa fa-user fa-fw" aria-hidden="true"></i>&nbsp;Log In</li>
-        <li><i class="fa fa-plus fa-fw" aria-hidden="true"></i>&nbsp;<%= link_to "New Poll", root_path %></li>
-        <li><i class="fa fa-share-alt fa-fw" aria-hidden="true"></i>&nbsp;Share It</li>
-        <li>
-          <div id="omniauth-login">
-            <% if current_user %>
-              <%# user is logged in %>
-              <ul>
-                <li>Welcome <%= current_user.name %>!</li>
-                <li><%= image_tag current_user.picture %></li>
-                <% if @polls %>
-                  <li><%= link_to "See your polls", polls_path %></li>
-                <% end %>
-                <li><%= link_to 'Sign Out', logout_path %></li>
-            <% else %>
-              <%# user is logged out %>
-              You are not logged in.<br>
-              <li><%= link_to "Sign in with Facebook", facebook_login_path %></li>
-              <li><%= link_to "Sign in with Twitter", twitter_login_path %></li>
+        <% if current_user %>
+          <%# user is logged in %>
+            <li>Welcome <%= current_user.name %>!</li>
+            <li><%= image_tag current_user.picture %></li>
+            <% if @polls %>
+              <li><%= link_to "See your polls", polls_path %></li>
             <% end %>
-          </div> 
-        </li> 
+            <li><%= link_to 'Sign Out', logout_path %></li>
+        <% else %>
+          <%# user is logged out %>
+          <li><i class="fa fa-facebook fa-fw" aria-hidden="true"></i>&nbsp;<%= link_to "Sign in with Facebook", facebook_login_path %></li>
+          <li><i class="fa fa-twitter fa-fw" aria-hidden="true"></i>&nbsp;<%= link_to "Sign in with Twitter", twitter_login_path %></li>
+        <% end %>
+        <li><i class="fa fa-plus fa-fw" aria-hidden="true"></i>&nbsp;<%= link_to "New Poll", root_path %>
+        </li>
 
-<div id="status">
-</div>
+        <div id="status">
+        </div>
       </ul>
     </div>
 

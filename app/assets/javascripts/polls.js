@@ -14,26 +14,46 @@ $(document).on('turbolinks:load', function() {
 
   $('.submit-btn').prop('disabled', true);
 
-  function setPollImageHeight(){
-    var pollImageWidth = $('.poll-item').width();
-    $('.poll-item').css('height', pollImageWidth);
-    }
+  // function setPollImageWidth(){
+  //   var pollImageHeight = $('.poll-item').height();
+  //   $('.poll-item').css('width', pollImageHeight);
+  //   }
 
-  setPollImageHeight();
+  // setPollImageWidth();
+  
+  $('img').on('load', function(){
+    tallWideImage('a');
+    tallWideImage('b');
+  });
 
   //share button stop click
   $('#share-button > .share').click(function(e){
     e.preventDefault();
   });
   
-  $(window).bind("resize", function(){
-    setPollImageHeight();
-  });
+  // $(window).bind("resize", function(){
+  //   setPollImageWidth();
+  // });
 
   function resetFormElement(formInput) {
     $(formInput).wrap('<form>').closest('form').get(0).reset();
     $(formInput).unwrap();
   }
+
+  function showVoteCount() {
+    $('.vote-link').contents().delay(500).unwrap();
+    $('.poll-item-image').addClass('drop-opacity');
+    $('.vote-count').addClass('show-vote-count');
+  }
+
+  //null vote
+
+    $('.btn-vote').click(function(){
+      if ($('.vote-link').length) {
+        showVoteCount();
+        subscribeNullVote();
+      }
+    });
 
 
   //Put in a vote
@@ -50,13 +70,11 @@ $(document).on('turbolinks:load', function() {
 
       console.log(data);
 
-      $('.vote-link').delay(500).removeAttr('href');
       $('#vote-count-a').html(data.vote_count_a);
       $('#vote-count-b').html(data.vote_count_b);
-      $('.poll-item-image').addClass('drop-opacity');
-      $('.vote-count').addClass('show-vote-count');
-
+      showVoteCount();
       publishNub();
+
     });
   });
 
@@ -133,18 +151,26 @@ $(document).on('turbolinks:load', function() {
 
 });
 
-
+function tallWideImage(pollLetter) {
+    var itemImage = "#item-" + pollLetter + "-image";
+      if ($(itemImage).height() < $(itemImage).width()){
+      $(itemImage).addClass('wide-image');
+      } else {
+      console.log($(itemImage).height());
+      console.log($(itemImage).width());
+      $(itemImage).addClass('tall-image');
+      };
+}
 
 
 
 //Show the image that has been selected by the user
 var openFile = function(event, pollLetter) {
-
+  var itemImage = "#item-" + pollLetter + "-image";
   var input = event.target;
   var reader = new FileReader();
 
   reader.onload = function(){
-    var itemImage = "#item-" + pollLetter + "-image";
     var dataURL = reader.result;
     var output = document.querySelector(itemImage);
     output.src = dataURL;
@@ -162,13 +188,7 @@ var openFile = function(event, pollLetter) {
     $('#middle-text-' + pollLetter).delay(500).toggleClass('hide');
 
     //if the image is horizontal, change the css so it fills the circle
-    if ($(itemImage).height() < $(itemImage).width()){
-      $(itemImage).toggleClass('wide-image');
-    } else {
-      console.log($(itemImage).height());
-      console.log($(itemImage).width());
-      $(itemImage).toggleClass('tall-image');
-    };
+    tallWideImage(pollLetter);
 
     //if both images are set, change the submit button
     if ($('#item-a-image').attr('src') && $('#item-b-image').attr('src')) {
