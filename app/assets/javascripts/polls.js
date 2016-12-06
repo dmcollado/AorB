@@ -1,12 +1,13 @@
 // Don't know who wrote this, or what it does. -R
-$(function() {
-  $(document).on("keyup, change", "input#item-a-url", function() {
-    $("#item-a-image").attr("src", $(this).val());
-  })
-  $(document).on("keyup, change", "input#item-b-url", function() {
-    $("#item-b-image > img").attr("src", $(this).val());
-  })
-})
+// $(function() {
+//   $(document).on("keyup, change", "input#item-a-url", function() {
+//     $("#item-a-image").attr("src", $(this).val());
+//   })
+//   $(document).on("keyup, change", "input#item-b-url", function() {
+//     $("#item-b-image > img").attr("src", $(this).val());
+//   })
+// })
+
 
 $(document).on('turbolinks:load', function() {
   
@@ -14,26 +15,19 @@ $(document).on('turbolinks:load', function() {
 
   $('.submit-btn').prop('disabled', true);
 
-  // function setPollImageWidth(){
-  //   var pollImageHeight = $('.poll-item').height();
-  //   $('.poll-item').css('width', pollImageHeight);
-  //   }
-
-  // setPollImageWidth();
-  
-  $('img').on('load', function(){
-    tallWideImage('a');
-    tallWideImage('b');
-  });
-
   //share button stop click
   $('#share-button > .share').click(function(e){
     e.preventDefault();
   });
-  
-  // $(window).bind("resize", function(){
-  //   setPollImageWidth();
-  // });
+
+  $('#item-a-image').on('load', function(){
+    tallWideImage('a');
+  });
+
+  $('#item-b-image').on('load', function(){
+    tallWideImage('b');
+  });
+
 
   function resetFormElement(formInput) {
     $(formInput).wrap('<form>').closest('form').get(0).reset();
@@ -154,10 +148,10 @@ $(document).on('turbolinks:load', function() {
 function tallWideImage(pollLetter) {
     var itemImage = "#item-" + pollLetter + "-image";
       if ($(itemImage).height() < $(itemImage).width()){
+      console.log('wide');
       $(itemImage).addClass('wide-image');
       } else {
-      console.log($(itemImage).height());
-      console.log($(itemImage).width());
+      console.log('tall');
       $(itemImage).addClass('tall-image');
       };
 }
