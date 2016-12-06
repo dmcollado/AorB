@@ -768,7 +768,23 @@ form.new-poll {
   }
 
   .poll-middle {
-    margin: 0 -8rem;
+    margin: 0 -9.5rem;
+  }
+
+  .poll-middle-text{
+    font-size: 3em;
+  }
+
+  #middle-text-a{
+    bottom: 4rem;
+  }
+
+  #middle-text-b{
+    top: 4rem;
+  }
+
+  .vote-text {
+    padding: 0 0 0 0.3rem;
   }
 
   #reset-button-a {
@@ -822,11 +838,15 @@ form.new-poll {
   }
 
   .btn-vote {
-    padding: 0 0 1rem;
+    padding: 0 0 0 0.5rem;
     height: 6rem;
     width: 6rem;
-    font-size: 3rem;
+    font-size: 2.5rem;
     line-height: 3rem;
+  }
+
+  .show-vote-count {
+    font-size: 4.6em;
   }
 
   #reset-button-a {
@@ -879,9 +899,18 @@ form.new-poll {
     padding: 0 0 1rem;
     height: 6rem;
     width: 6rem;
-    font-size: 3rem;
-    line-height: 3rem;
   }
+
+  .vote-text {
+    padding: 1rem 0 0 0.5rem;
+    font-size: 2.8rem;
+    line-height: 2.8rem;
+  }
+
+  .show-vote-count {
+    font-size: 5.5em;
+  }
+
 
   #reset-button-a {
     margin: 0;
@@ -937,10 +966,18 @@ form.new-poll {
 
   .btn-vote {
     padding: 0 0 1rem;
-    height: 6rem;
-    width: 6rem;
-    font-size: 3rem;
-    line-height: 3rem;
+    height: 8rem;
+    width: 8rem;
+  }
+
+  .vote-text {
+    padding: 1rem 0 0 0.8rem;
+    font-size: 3.5rem;
+    line-height: 3.5rem;
+  }
+
+  .show-vote-count {
+    font-size: 7em;
   }
 
   #reset-button-a {
@@ -1002,6 +1039,16 @@ form.new-poll {
     width: 11rem;
     font-size: 4rem;
     line-height: 4rem;
+  }
+
+  .vote-text {
+    padding: 1.5rem 0 0 01rem;
+    font-size: 5rem;
+    line-height: 5rem;
+  }
+
+  .show-vote-count {
+    font-size: 9em;
   }
 
   .reset-button {
