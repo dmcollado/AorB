@@ -583,6 +583,24 @@ form.new-poll {
   visibility: visible;
 }
 
+/* Disable Rotation on mobile */
+.rotation {
+  display: none;
+  margin: 5% auto 0;
+  width: 50%;
+  font-size: 3rem;
+  color: #fff;
+  padding: 0;
+  text-align: center;
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: 767px) and (orientation: landscape) {
+  .container {display: none;}
+  .menu-container {display: none;}
+  .rotation {display: block;}
+}
+
 @media only screen and (min-width: 767px) and (orientation: landscape) {
   .container, form.new-poll {
   display: -webkit-flex;
