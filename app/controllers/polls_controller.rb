@@ -39,14 +39,14 @@ class PollsController < ApplicationController
     elsif params[:poll][:avatar_a].present?
       @item_a = @poll.poll_items.new(avatar_a: params[:poll][:avatar_a])
     else
-      "You fucked up!"
+      "Something went wrong."
     end
     if params[:url_b].present?
       @item_b = @poll.poll_items.new(url: params[:url_b])
     elsif params[:poll][:avatar_b].present?
       @item_b = @poll.poll_items.new(avatar_b: params[:poll][:avatar_b])
     else
-      "You fucked up!"
+      "Something went wrong."
     end
 
   	respond_to do |format|
@@ -79,7 +79,7 @@ class PollsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_poll
-      @poll = Poll.find(params[:id])
+      @poll = Poll.find_by_slug(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -89,7 +89,7 @@ class PollsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def poll_params
-      params.require().permit(:url_a, :url_b, :description, :avatar, :poll_id)
+      params.require().permit(:url_a, :url_b, :description, :avatar, :poll_id, :slug)
     end
 
 end
