@@ -644,17 +644,6 @@ form.new-poll {
 }
 
 
-/*@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
-  html {
-    transform: rotate(-90deg);
-    transform-origin: left top;
-    overflow-x: hidden;
-    position: absolute;
-    top: 100%;
-    left: 0;
-  }
-}*/
-
 @media only screen and (min-width: 375px) {
   .poll-middle {
     margin: -2.8rem 0;
@@ -806,11 +795,13 @@ form.new-poll {
   }
 
   #reset-button-a {
-    margin: 0 0 0 -5em;
+    margin: 0;
+    bottom: 9rem;
   }
 
   #reset-button-b {
-    margin: 0 0 0 5em;
+    margin: 0;
+    top: 9rem;
   }
 
   #middle-text-a {
@@ -819,6 +810,13 @@ form.new-poll {
 
   #middle-text-b {
     margin: 5rem 0 0 0;
+  }
+
+  #expand-button-b {
+    top: 1em;
+    right: 1em;
+    left: initial;
+    bottom: initial;
   }
 }
 
@@ -853,6 +851,11 @@ form.new-poll {
     width: 6rem;
     font-size: 4rem;
     line-height: 4rem;
+  }
+
+  .submit-btn.ready:after {
+    font-size: 1em;
+    line-height: 1.6em;
   }
 
   .btn-vote {
