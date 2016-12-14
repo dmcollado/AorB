@@ -39,9 +39,6 @@
           <%# user is logged in %>
             <li>Welcome <%= current_user.name %>!</li>
             <li><%= image_tag current_user.picture %></li>
-            <% if @polls %>
-              <li><%= link_to "See your polls", polls_path %></li>
-            <% end %>
             <li><%= link_to 'Sign Out', logout_path %></li>
         <% else %>
           <%# user is logged out %>
