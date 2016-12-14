@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get 'logout' => 'sessions#destroy'
 
+  get 'about' => 'about#index'
   # get 'votes/by_user' => 'votes#by_user'
 
   resources :users

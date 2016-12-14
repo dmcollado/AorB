@@ -1,0 +1,39 @@
+.about-container {
+  margin: 0 auto;
+  padding: 1em;
+  width: 90vw;
+  height: 90vw;
+/*  background: #1c314e;*/
+  text-align: center;
+  color: #fff;
+/*  border: 1px solid #0c3d7b;*/
+  border-radius: 50%;
+}
+
+.about-container a {
+  text-decoration: underline;
+}
+
+.about-container a:hover {
+  text-decoration: none;
+}
+
+.about-title {
+  font-family: 'Pacifico';
+  color: #b4cae4;
+  font-size: 2em;
+  font-weight: normal;
+}
+
+.about-subtitle {
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+  color: #b4cae4;
+}
+
+@media screen and (orientation: landscape) {
+  .about-container {
+    width: 45vw;
+    height: 45vw;
+  }
+}
